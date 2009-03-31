@@ -1,2 +1,3 @@
 *.log  # Will exclude all .log files
 config/database.yml
+.idea
