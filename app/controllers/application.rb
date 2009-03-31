@@ -4,7 +4,7 @@
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
 
-  before_filter :set_iphone_format
+  before_filter :set_mobile_format
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
@@ -15,16 +15,16 @@ class ApplicationController < ActionController::Base
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
 
-  def set_iphone_format
-    if is_iphone_request?
+  def set_mobile_format
+    if is_mobile_request?
       request.format = :iphone
     end
   end
 
-  private
+  protected
 
-  def is_iphone_request?
-    request.user_agent =~ /(Mobile\/.+Safari)/
+  def is_mobile_request?
+    request.user_agent =~ /Mobile\/.+Safari|Opera Mini/
   end
 
 
