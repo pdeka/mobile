@@ -6,6 +6,7 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application.rb" afterPath="$PROJECT_DIR$/app/controllers/application.rb" />
     </list>
     <ignored path="mobile.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,10 +24,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="users_controller.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="users_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="36" selection-start="488" selection-end="488" vertical-scroll-proportion="-0.8508287">
+            <state line="24" column="36" selection-start="488" selection-end="488" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/application.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="42" selection-start="830" selection-end="830" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="database.yml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config/database.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -112,6 +131,9 @@
       <autoscrollFromSource />
       <sortByType />
     </navigator>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="GoToClass.includeJavaFiles" value="false" />
   </component>
   <component name="RunManager" selected="Rails.Development: mobile">
     <configuration default="true" type="RakeRunConfigurationType" factoryName="Rake">
@@ -294,7 +316,21 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="36" selection-start="488" selection-end="488" vertical-scroll-proportion="-0.8508287">
+        <state line="24" column="36" selection-start="488" selection-end="488" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/application.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="42" selection-start="830" selection-end="830" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/database.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
