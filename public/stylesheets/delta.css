@@ -1,0 +1,207 @@
+body {
+    background: #fff;
+    color: #000;
+}
+
+div.lmb_nav, div.lmb_header {
+    text-align: center;
+    color: #1e4798;
+}
+
+a.lmb_nav, a.lmb_nav:visited {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+span.lmb_nav {
+    color: #ccc;
+}
+
+a, a:visited {
+    color: #1e4798;
+}
+
+.lmb_title, a.lmb_title {
+    color: #fff;
+    background: #1e4798;
+    margin: 5px 0px;
+    text-decoration: none;
+}
+
+hr {
+    background: #1e4798;
+    color: #1e4798;
+    margin: 0;
+}
+
+* {
+    font-size: small;
+    margin: 0;
+}
+
+ol {
+    margin-left: 2em
+}
+
+ul {
+    margin-left: 0.3em
+}
+
+a img {
+    border: none;
+}
+
+.lmb0 {
+    background: #eaeef5
+}
+
+.lmb1 {
+    background: #d5dded
+}
+
+#un_home {
+    border-top: 1px solid #036;
+}
+
+.un_home1 {
+    border-top: 1px solid #ccc;
+}
+
+a.un_home, a.un_home:visited {
+    text-decoration: none;
+    display: block;
+    padding: 2px;
+}
+
+a.un_home:hover {
+    background: #069;
+    color: #fff;
+}
+
+body {
+    color: #333 !important;
+}
+
+div.lmb_header {
+    text-align: left;
+    color: #036;
+}
+
+hr, hr.red {
+    border-top: solid #036 1px;
+    color: #036;
+    height: 0px;
+    clear: both;
+}
+
+a, a:visited {
+    color: #069
+}
+
+div.lmb_title {
+    background: #036;
+    margin: 0px;
+    border-top: 3px solid #fff;
+    padding: 2px;
+}
+
+div.lmb1 {
+    background: #79C;
+    color: #ffffff;
+    padding: 2px;
+}
+
+a.lmb1 {
+    color: #fff;
+    background: #79C;
+}
+
+*.tblContent2 {
+    background: #eaeaea;
+}
+
+.cpyError, .error {
+    color: #c00;
+}
+
+.box {
+    margin-left: 20px;
+}
+
+div.space {
+    margin-bottom: 5px;
+}
+
+.un_ltt_button {
+    background: #036;
+    color: #fff;
+    font-weight: bold;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #eaeaea;
+    border-left: 1px solid #eaeaea;
+}
+
+select, input {
+    margin-bottom: 2px;
+}
+
+#un_ltt_disabled {
+    background: #ccc !important;
+}
+
+.smetrics {
+    height: 0px;
+    width: 0px;
+}
+
+#un_bottom {
+    border-top: 3px solid #fff;
+}
+
+#un_b1 {
+    border-top: 1px solid #036;
+}
+
+div.un_b2 {
+    background: #eaeaea;
+    border-bottom: 1px solid #036;
+}
+
+#un_copy {
+    color: #036;
+    border-top: 5px solid #fff;
+    border-bottom: 5px solid #fff;
+}
+
+* {
+    font-family: Verdana, Sans-Serif;
+}
+
+a, .un_ltt_button {
+    font-family: Tahoma, Sans-Serif;
+}
+
+a.un_b2, a.un_b2:visited {
+    display: block;
+    padding: 2px;
+    text-decoration: none;
+}
+
+a.un_b2:hover {
+    background: #069;
+    color: #fff;
+}
+
+.un_ltt_button:hover {
+    color: #fff;
+    background: #069;
+    border-right-color: #069;
+    border-bottom-color: #069;
+}
+
+.un_flight_status {
+    background: #006633;
+    color: #ffffff;
+    padding: 2px;
+}

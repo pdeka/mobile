@@ -1,0 +1,23 @@
+<img src="/images/bdi.png" width="136" height="50">
+<br>
+<div align="center" class="lmb_header"></div>
+<div class="lmb_title"><b>Log In</b></div>
+
+<p>Username</p>
+<p><%= text_field_tag  'username', nil, :maxlength => 15, :size => 20 %></p>
+<p>Password</p>
+<p><%= text_field_tag 'password', nil, :maxlength => 15, :size => 20 %></p>
+<p><%= submit_tag 'Login', :class => 'un_ltt_button' %></p>
+
+
+<div id="un_bottom">
+    <div class="iphone_list">
+        <div id="un_b1">
+            <div class="un_b2">
+                <a href="/login/login" title="Home" name="Home" class="un_b2">Home</a>
+            </div>
+        </div>
+    </div>
+    <div id="un_copy">&copy;2009 ThoughtWorks<br/></div>
+</div>
+

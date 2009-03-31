@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def is_mobile_request?
-    request.user_agent =~ /Mobile\/.+Safari|Opera Mini/
+    request.user_agent =~ /Mobile\/.+Safari|Opera|Firefox/
   end
 
 
