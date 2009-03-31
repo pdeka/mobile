@@ -2625,3 +2625,27 @@ Processing LoginController#login (for 127.0.0.1 at 2009-03-31 18:28:25) [GET]
 Rendering template within layouts/application
 Rendering login/login
 Completed in 11ms (View: 7, DB: 0) | 200 OK [http://localhost/login/login]
+
+
+Processing LoginController#login (for 127.0.0.1 at 2009-04-01 10:15:37) [GET]
+  [4;36;1mSQL (52.5ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+Rendering template within layouts/application
+Rendering login/login
+Completed in 23ms (View: 20, DB: 53) | 200 OK [http://localhost/login/login]
+
+
+Processing LoginController#login (for 127.0.0.1 at 2009-04-01 10:15:43) [GET]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+Rendering template within layouts/application
+Rendering login/login
+Completed in 9ms (View: 5, DB: 0) | 200 OK [http://localhost/login/login]
+
+
+Processing LoginController#login (for 127.0.0.1 at 2009-04-01 10:15:45) [GET]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+Rendering template within layouts/application
+Rendering login/login
+Completed in 9ms (View: 5, DB: 0) | 200 OK [http://localhost/login/login]
