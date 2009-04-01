@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :homes
+
   map.resources :users
   map.resources :logins
 

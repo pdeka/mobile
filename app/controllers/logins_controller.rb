@@ -14,13 +14,12 @@ class LoginsController < ApplicationController
 
     @user = User.find :first, :conditions => [ "username = ?", params[:username]]
 
-    respond_to do |format|
-      if (@user)
-        session[:user] = @user
-#        flash[:notice] = 'Login was successfully created.'
-#        format.iphone { render :action => "index" }
-      else
-        flash[:error] = 'Login was not successful.'
+    if (@user)
+      session[:user] = @user
+      redirect_to homes_path
+    else
+      flash[:error] = 'Login was not successful.'
+      respond_to do |format|
         format.iphone { render :action => "index" }
       end
     end
