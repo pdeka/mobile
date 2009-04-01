@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
-describe "/dimensions/index.html.erb" do
+describe "/dimensions/index.iphone.erb" do
   include DimensionsHelper
   
   before(:each) do

@@ -1,2 +1,8 @@
 <h1>Home Page</h1>
 
+<% form_tag homes_path do %>
+
+    <%= select_tag :selected_dimension_id, options_from_collection_for_select(@dimensions, 'id', 'name') %>
+    <p><%= submit_tag 'Rate', :class => 'un_ltt_button' %></p>  
+
+<% end %>
