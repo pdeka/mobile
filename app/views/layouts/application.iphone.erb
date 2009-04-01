@@ -15,8 +15,25 @@
 <div class="viewport_body">
     <p style="color: green"><%= flash[:notice] %></p>
     <p style="color: red"><%= flash[:error] %></p>
+
+    <img src="/images/bdi.png" width="136" height="50">
+    <br>
+    <div align="center" class="lmb_header"></div>
+
     <%= yield :toolbar %>
     <%= yield %>
+
+    <div id="un_bottom">
+        <div class="iphone_list">
+            <div id="un_b1">
+                <div class="un_b2">
+                    <a href="/login/login" title="Home" name="Home" class="un_b2">Home</a>
+                </div>
+            </div>
+        </div>
+        <div id="un_copy">&copy;2009 ThoughtWorks<br/></div>
+    </div>
+    
 </div>
 </body>
 </html>
