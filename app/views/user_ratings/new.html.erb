@@ -1,0 +1,27 @@
+<h1>New user_rating</h1>
+
+<% form_for(@user_rating) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :rating %><br />
+    <%= f.text_field :rating %>
+  </p>
+  <p>
+    <%= f.label :situational_data %><br />
+    <%= f.text_field :situational_data %>
+  </p>
+  <p>
+    <%= f.label :reference_number %><br />
+    <%= f.text_field :reference_number %>
+  </p>
+  <p>
+    <%= f.label :channel %><br />
+    <%= f.text_field :channel %>
+  </p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', user_ratings_path %>

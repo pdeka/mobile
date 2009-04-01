@@ -1,0 +1,23 @@
+<p>
+  <b>Rating:</b>
+  <%=h @user_rating.rating %>
+</p>
+
+<p>
+  <b>Situational data:</b>
+  <%=h @user_rating.situational_data %>
+</p>
+
+<p>
+  <b>Reference number:</b>
+  <%=h @user_rating.reference_number %>
+</p>
+
+<p>
+  <b>Channel:</b>
+  <%=h @user_rating.channel %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_rating_path(@user_rating) %> |
+<%= link_to 'Back', user_ratings_path %>

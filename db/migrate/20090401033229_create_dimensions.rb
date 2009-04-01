@@ -2,7 +2,7 @@ class CreateDimensions < ActiveRecord::Migration
   def self.up
     create_table :dimensions do |t|
       t.string :name
-      t.string :description
+      t.text :description
 
       t.column :user_id, :integer
 

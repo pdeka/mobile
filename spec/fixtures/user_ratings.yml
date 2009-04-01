@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  rating: 1
+  situational_data: MyString
+  reference_number: 1
+  channel: MyString
+
+two:
+  rating: 1
+  situational_data: MyString
+  reference_number: 1
+  channel: MyString

@@ -1,0 +1,26 @@
+<h1>Listing user_ratings</h1>
+
+<table>
+  <tr>
+    <th>Rating</th>
+    <th>Situational data</th>
+    <th>Reference number</th>
+    <th>Channel</th>
+  </tr>
+
+<% for user_rating in @user_ratings %>
+  <tr>
+    <td><%=h user_rating.rating %></td>
+    <td><%=h user_rating.situational_data %></td>
+    <td><%=h user_rating.reference_number %></td>
+    <td><%=h user_rating.channel %></td>
+    <td><%= link_to 'Show', user_rating %></td>
+    <td><%= link_to 'Edit', edit_user_rating_path(user_rating) %></td>
+    <td><%= link_to 'Destroy', user_rating, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New user_rating', new_user_rating_path %>

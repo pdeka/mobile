@@ -9,12 +9,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090401033229) do
+ActiveRecord::Schema.define(:version => 20090401040617) do
 
   create_table "dimensions", :force => true do |t|
     t.string   "name"
-    t.string   "description"
+    t.text     "description"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_ratings", :force => true do |t|
+    t.integer  "rating"
+    t.string   "situational_data"
+    t.integer  "reference_number"
+    t.string   "channel"
+    t.integer  "user_id"
+    t.integer  "dimension_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
