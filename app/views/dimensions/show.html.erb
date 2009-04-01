@@ -1,0 +1,13 @@
+<p>
+  <b>Name:</b>
+  <%=h @dimension.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @dimension.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_dimension_path(@dimension) %> |
+<%= link_to 'Back', dimensions_path %>

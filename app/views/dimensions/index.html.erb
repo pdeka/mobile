@@ -1,0 +1,22 @@
+<h1>Listing dimensions</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+
+<% for dimension in @dimensions %>
+  <tr>
+    <td><%=h dimension.name %></td>
+    <td><%=h dimension.description %></td>
+    <td><%= link_to 'Show', dimension %></td>
+    <td><%= link_to 'Edit', edit_dimension_path(dimension) %></td>
+    <td><%= link_to 'Destroy', dimension, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New dimension', new_dimension_path %>
