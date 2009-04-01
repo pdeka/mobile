@@ -3,12 +3,15 @@
 <div align="center" class="lmb_header"></div>
 <div class="lmb_title"><b>Log In</b></div>
 
-<p>Username</p>
-<p><%= text_field_tag  'username', nil, :maxlength => 15, :size => 20 %></p>
-<p>Password</p>
-<p><%= text_field_tag 'password', nil, :maxlength => 15, :size => 20 %></p>
-<p><%= submit_tag 'Login', :class => 'un_ltt_button' %></p>
+<% form_tag logins_path do %>
 
+    <p>Username</p>
+    <p><%= text_field_tag  'username', nil, :maxlength => 15, :size => 20 %></p>
+    <p>Password</p>
+    <p><%= text_field_tag 'password', nil, :maxlength => 15, :size => 20 %></p>
+    <p><%= submit_tag 'Login', :class => 'un_ltt_button' %></p>
+
+<% end %>
 
 <div id="un_bottom">
     <div class="iphone_list">
@@ -20,4 +23,3 @@
     </div>
     <div id="un_copy">&copy;2009 ThoughtWorks<br/></div>
 </div>
-

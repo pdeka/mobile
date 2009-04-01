@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
-describe "/users/new.html.erb" do
+describe "/users/new.iphone.erb" do
   include UsersHelper
   
   before(:each) do
