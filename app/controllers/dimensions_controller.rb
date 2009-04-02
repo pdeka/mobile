@@ -1,5 +1,6 @@
 class DimensionsController < ApplicationController
   active_scaffold :dimension  do |config|
-    list.columns.exclude [:users]
+    config.columns = [ :name, :description, :created_at, :updated_at ]
+    list.columns.exclude [:users]  
   end
 end
