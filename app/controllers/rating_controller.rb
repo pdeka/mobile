@@ -5,7 +5,6 @@ class RatingController < ApplicationController
   end
 
   def create
-    puts '!!!!! RatingController create !!!!!'
     rating = UserRating.new
     rating.rating = params[:selected_rating]
     rating.user = session[:user]

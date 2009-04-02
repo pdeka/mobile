@@ -13,7 +13,6 @@ class HomesController < ApplicationController
   end
 
   def create
-    puts "!!!! Home Controller Create!!!"
     session[:dimension] = Dimension.find_by_id(params[:selected_dimension_id])
     redirect_to '/rating'
   end
