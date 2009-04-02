@@ -2,17 +2,13 @@
 
 <table>
   <tr>
-    <th>Firstname</th>
-    <th>Lastname</th>
-    <th>Username</th>
+    <th>Usernumber</th>
     <th>Password</th>
   </tr>
 
 <% for user in @users %>
   <tr>
-    <td><%=h user.firstname %></td>
-    <td><%=h user.lastname %></td>
-    <td><%=h user.username %></td>
+    <td><%=h user.usernumber %></td>
     <td><%=h user.password %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>

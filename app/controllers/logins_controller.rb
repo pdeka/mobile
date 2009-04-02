@@ -10,9 +10,8 @@ class LoginsController < ApplicationController
 
   def create
     reset_session
-    puts "I am in create !!!!!!!!!!!!!!!!!!!!"
 
-    @user = User.find :first, :conditions => [ "username = ?", params[:username]]
+    @user = User.find :first, :conditions => [ "usernumber = ? and password = ?", params[:usernumber], params[:password]]
 
     if (@user)
       session[:user] = @user

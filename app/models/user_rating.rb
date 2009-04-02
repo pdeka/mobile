@@ -9,5 +9,14 @@ class UserRating < ActiveRecord::Base
   def to_label
     dimension.name + ' : ' + rating.to_s
   end
+
+  def formatted_date
+
+  end
+
+
+  def formatted_time
+    
+  end
   
 end

@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :user_ratings, :dependent => :destroy
 
   def to_label
-   firstname + ' ' + lastname
+   usernumber
   end
 
 end
