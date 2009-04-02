@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 6) do
     t.string  "location"
     t.text    "accompanying_people"
     t.text    "significant_occurences"
-    t.integer "user_rating"
+    t.integer "user_rating_id"
   end
 
   create_table "user_ratings", :force => true do |t|

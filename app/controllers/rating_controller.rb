@@ -15,6 +15,8 @@ class RatingController < ApplicationController
       
     rating.save!
 
+    session[:user_rating] = rating
+
     redirect_to '/situational_data_entry'
   end
 end
