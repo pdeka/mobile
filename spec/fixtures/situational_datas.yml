@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  location: MyString
+  accompanying_people: MyText
+  significant_occurences: MyText
+
+two:
+  location: MyString
+  accompanying_people: MyText
+  significant_occurences: MyText

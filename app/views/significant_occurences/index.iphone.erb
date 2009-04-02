@@ -1,0 +1,11 @@
+<div class="lmb_title"><b>Situational Data</b></div>
+
+<% form_tag '/significant_occurences/create' do %>
+
+    <p>Has anything significant happened since your last rating?</p>
+
+    <p><%= text_area_tag  'significant_occurences', nil%></p>
+
+    <p><%= submit_tag 'Submit', :class => 'un_ltt_button' %></p>
+
+<% end %>

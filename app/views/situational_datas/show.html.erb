@@ -1,0 +1,18 @@
+<p>
+  <b>Location:</b>
+  <%=h @situational_data.location %>
+</p>
+
+<p>
+  <b>Accompanying people:</b>
+  <%=h @situational_data.accompanying_people %>
+</p>
+
+<p>
+  <b>Significant occurences:</b>
+  <%=h @situational_data.significant_occurences %>
+</p>
+
+
+<%= link_to 'Edit', edit_situational_data_path(@situational_data) %> |
+<%= link_to 'Back', situational_datas_path %>
