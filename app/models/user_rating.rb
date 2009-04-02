@@ -11,12 +11,12 @@ class UserRating < ActiveRecord::Base
   end
 
   def formatted_date
-
+    created_at.strftime('%m/%d/%Y')
   end
 
 
   def formatted_time
-    
+     created_at.strftime('%I:%M%p')
   end
   
 end

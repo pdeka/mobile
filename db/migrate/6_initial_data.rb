@@ -8,8 +8,8 @@ class InitialData < ActiveRecord::Migration
     dimension.save!
 
     user = User.new
-    user.usernumber = 'josh'
-    user.password = 'josh'
+    user.usernumber = '1234'
+    user.password = '1234'
     user.dimensions << dimension
 
     user.save!

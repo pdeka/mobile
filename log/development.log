@@ -13151,3 +13151,788 @@ MissingSourceFile (no such file to load -- sqlite3):
 Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (50.1ms)
 Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (0.9ms)
 Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (8.6ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (8.8ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (1)
+  [4;36;1mSQL (8.9ms)[0m   [0;1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "usernumber" varchar(255), "password" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (8.0ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('1')[0m
+Migrating to CreateDimensions (2)
+  [4;36;1mSQL (8.3ms)[0m   [0;1mCREATE TABLE "dimensions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "user_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (14.6ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('2')[0m
+Migrating to CreateUserRatings (3)
+  [4;36;1mSQL (11.3ms)[0m   [0;1mCREATE TABLE "user_ratings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "rating" integer, "reference_number" integer, "channel" varchar(255), "user_id" integer, "dimension_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (13.8ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('3')[0m
+Migrating to CreateUserDimensionsMapping (4)
+  [4;36;1mSQL (4.4ms)[0m   [0;1mCREATE TABLE "dimensions_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "dimension_id" integer) [0m
+  [4;35;1mSQL (13.5ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('4')[0m
+Migrating to CreateSituationalDatas (5)
+  [4;36;1mSQL (4.3ms)[0m   [0;1mCREATE TABLE "situational_datas" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "location" varchar(255), "accompanying_people" text, "significant_occurences" text, "user_rating_id" integer) [0m
+  [4;35;1mSQL (13.4ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('5')[0m
+Migrating to InitialData (6)
+  [4;36;1mDimension Create (0.6ms)[0m   [0;1mINSERT INTO "dimensions" ("name", "created_at", "updated_at", "user_id", "description") VALUES('Irritability', '2009-04-02 05:44:14', '2009-04-02 05:44:14', NULL, 'How would you rate your irritability on a scale of 1 to 10?')[0m
+  [4;35;1mUser Create (1.9ms)[0m   [0mINSERT INTO "users" ("created_at", "updated_at", "usernumber", "password") VALUES('2009-04-02 05:44:14', '2009-04-02 05:44:14', '1234', '1234')[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO "dimensions_users" ("dimension_id", "id", "user_id") VALUES (1, 1, 1)[0m
+  [4;35;1mSQL (2.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('6')[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("dimensions")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("dimensions_users")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("situational_datas")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("user_ratings")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("users")[0m
+
+
+Processing LoginsController#index (for 127.0.0.1 at 2009-04-02 16:46:19) [GET]
+Rendering template within layouts/application
+Rendering logins/index
+Completed in 51ms (View: 47, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginsController#create (for 127.0.0.1 at 2009-04-02 16:46:24) [POST]
+  Parameters: {"commit"=>"Login", "authenticity_token"=>"b63d801c9c41d3c9000755c871492cf630f2f876", "usernumber"=>"1234", "password"=>"1234"}
+  [4;36;1mUser Load (0.9ms)[0m   [0;1mSELECT * FROM "users" WHERE (usernumber = '1234' and password = '1234') LIMIT 1[0m
+Redirected to /homes
+Completed in 75ms (DB: 1) | 302 Found [http://localhost/logins]
+
+
+Processing HomesController#index (for 127.0.0.1 at 2009-04-02 16:46:24) [GET]
+Rendering template within layouts/application
+Rendering homes/index
+  [4;35;1mDimension Load (0.6ms)[0m   [0mSELECT * FROM "dimensions" INNER JOIN "dimensions_users" ON "dimensions".id = "dimensions_users".dimension_id WHERE ("dimensions_users".user_id = 1 ) [0m
+Completed in 44ms (View: 31, DB: 1) | 200 OK [http://localhost/homes]
+
+
+Processing HomesController#create (for 127.0.0.1 at 2009-04-02 16:46:26) [POST]
+  Parameters: {"commit"=>"Rate", "authenticity_token"=>"b9e28d2afdd9f49fe91cbd8ad2aa4f9599f32a71", "selected_dimension_id"=>"1"}
+  [4;36;1mDimension Load (0.5ms)[0m   [0;1mSELECT * FROM "dimensions" WHERE ("dimensions"."id" = '1') LIMIT 1[0m
+Redirected to /rating
+Completed in 12ms (DB: 1) | 302 Found [http://localhost/homes]
+
+
+Processing RatingController#index (for 127.0.0.1 at 2009-04-02 16:46:26) [GET]
+Rendering template within layouts/application
+Rendering rating/index
+Completed in 26ms (View: 22, DB: 0) | 200 OK [http://localhost/rating]
+
+
+Processing RatingController#create (for 127.0.0.1 at 2009-04-02 16:46:27) [POST]
+  Parameters: {"commit"=>"Submit", "selected_rating"=>"5", "authenticity_token"=>"b9e28d2afdd9f49fe91cbd8ad2aa4f9599f32a71"}
+
+
+TypeError (can't convert Range into Integer):
+    /app/controllers/rating_controller.rb:14:in `rand'
+    /app/controllers/rating_controller.rb:14:in `create'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    /usr/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (58.3ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (6.7ms)
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing RatingController#create (for 127.0.0.1 at 2009-04-02 16:50:15) [POST]
+  Parameters: {"commit"=>"Submit", "selected_rating"=>"5", "authenticity_token"=>"b9e28d2afdd9f49fe91cbd8ad2aa4f9599f32a71"}
+  [4;35;1mUserRating Create (0.4ms)[0m   [0mINSERT INTO "user_ratings" ("rating", "reference_number", "created_at", "dimension_id", "updated_at", "user_id", "channel") VALUES(5, 1386765, '2009-04-02 05:50:15', 1, '2009-04-02 05:50:15', 1, 'mobile')[0m
+Redirected to /situational_data_entry
+Completed in 945ms (DB: 0) | 302 Found [http://localhost/rating/create]
+
+
+Processing SituationalDataEntryController#index (for 127.0.0.1 at 2009-04-02 16:50:16) [GET]
+Rendering template within layouts/application
+Rendering situational_data_entry/index
+Completed in 10ms (View: 6, DB: 0) | 200 OK [http://localhost/situational_data_entry]
+
+
+Processing SituationalDataEntryController#create (for 127.0.0.1 at 2009-04-02 16:50:20) [POST]
+  Parameters: {"location"=>"czxc", "commit"=>"Submit", "authenticity_token"=>"b9e28d2afdd9f49fe91cbd8ad2aa4f9599f32a71", "accompanying_people"=>"zxc", "answer"=>"yes"}
+  [4;36;1mSituationalData Load (0.4ms)[0m   [0;1mSELECT * FROM "situational_datas" WHERE ("situational_datas".user_rating_id = 1) LIMIT 1[0m
+  [4;35;1mSituationalData Create (0.5ms)[0m   [0mINSERT INTO "situational_datas" ("location", "user_rating_id", "accompanying_people", "significant_occurences") VALUES('czxc', 1, 'zxc', NULL)[0m
+Redirected to /significant_occurences
+Completed in 126ms (DB: 1) | 302 Found [http://localhost/situational_data_entry/create]
+
+
+Processing SignificantOccurencesController#index (for 127.0.0.1 at 2009-04-02 16:50:20) [GET]
+Rendering template within layouts/application
+Rendering significant_occurences/index
+Completed in 10ms (View: 6, DB: 0) | 200 OK [http://localhost/significant_occurences]
+
+
+Processing SignificantOccurencesController#create (for 127.0.0.1 at 2009-04-02 16:50:22) [POST]
+  Parameters: {"commit"=>"Submit", "authenticity_token"=>"b9e28d2afdd9f49fe91cbd8ad2aa4f9599f32a71", "significant_occurences"=>"zxczxc"}
+  [4;36;1mSituationalData Load (0.4ms)[0m   [0;1mSELECT * FROM "situational_datas" WHERE ("situational_datas".user_rating_id = 1) LIMIT 1[0m
+  [4;35;1mSituationalData Update (0.4ms)[0m   [0mUPDATE "situational_datas" SET "significant_occurences" = 'zxczxc' WHERE "id" = 1[0m
+Redirected to /summary
+Completed in 67ms (DB: 1) | 302 Found [http://localhost/significant_occurences/create]
+
+
+Processing SummaryController#index (for 127.0.0.1 at 2009-04-02 16:50:23) [GET]
+Rendering template within layouts/application
+Rendering summary/index
+Completed in 13ms (View: 9, DB: 0) | 200 OK [http://localhost/summary]
+
+
+Processing SummaryController#index (for 127.0.0.1 at 2009-04-02 16:51:48) [GET]
+Rendering template within layouts/application
+Rendering summary/index
+Completed in 13ms (View: 10, DB: 0) | 200 OK [http://localhost/summary]
+
+
+Processing SummaryController#index (for 127.0.0.1 at 2009-04-02 16:52:15) [GET]
+Rendering template within layouts/application
+Rendering summary/index
+Completed in 14ms (View: 10, DB: 0) | 200 OK [http://localhost/summary]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-04-02 16:52:29) [GET]
+
+
+ActionController::RoutingError (No route matches "/login/login" with {:method=>:get}):
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/routing/recognition_optimisation.rb:66:in `recognize_path'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/routing/route_set.rb:386:in `recognize'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:182:in `handle_request'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/layout.erb (not_found)
+
+
+Processing SummaryController#index (for 127.0.0.1 at 2009-04-02 16:53:21) [GET]
+Rendering template within layouts/application
+Rendering summary/index
+Completed in 19ms (View: 13, DB: 0) | 200 OK [http://localhost/summary]
+
+
+Processing LoginsController#index (for 127.0.0.1 at 2009-04-02 16:53:22) [GET]
+Rendering template within layouts/application
+Rendering logins/index
+Completed in 9ms (View: 6, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginsController#create (for 127.0.0.1 at 2009-04-02 17:04:18) [POST]
+  Parameters: {"commit"=>"Login", "authenticity_token"=>"b9e28d2afdd9f49fe91cbd8ad2aa4f9599f32a71", "usernumber"=>"1234", "password"=>"1234"}
+  [4;36;1mUser Load (0.9ms)[0m   [0;1mSELECT * FROM "users" WHERE (usernumber = '1234' and password = '1234') LIMIT 1[0m
+Redirected to /homes
+Completed in 13ms (DB: 1) | 302 Found [http://localhost/logins]
+
+
+Processing HomesController#index (for 127.0.0.1 at 2009-04-02 17:04:18) [GET]
+Rendering template within layouts/application
+Rendering homes/index
+  [4;35;1mDimension Load (0.6ms)[0m   [0mSELECT * FROM "dimensions" INNER JOIN "dimensions_users" ON "dimensions".id = "dimensions_users".dimension_id WHERE ("dimensions_users".user_id = 1 ) [0m
+Completed in 23ms (View: 11, DB: 1) | 200 OK [http://localhost/homes]
+
+
+Processing HomesController#create (for 127.0.0.1 at 2009-04-02 17:04:20) [POST]
+  Parameters: {"commit"=>"Rate", "authenticity_token"=>"ee9f691616325f135b64726e9b0b834ed733534e", "selected_dimension_id"=>"1"}
+  [4;36;1mDimension Load (0.7ms)[0m   [0;1mSELECT * FROM "dimensions" WHERE ("dimensions"."id" = '1') LIMIT 1[0m
+Redirected to /rating
+Completed in 20ms (DB: 1) | 302 Found [http://localhost/homes]
+
+
+Processing RatingController#index (for 127.0.0.1 at 2009-04-02 17:04:20) [GET]
+Rendering template within layouts/application
+Rendering rating/index
+Completed in 13ms (View: 10, DB: 0) | 200 OK [http://localhost/rating]
+
+
+Processing RatingController#create (for 127.0.0.1 at 2009-04-02 17:04:21) [POST]
+  Parameters: {"commit"=>"Submit", "selected_rating"=>"5", "authenticity_token"=>"ee9f691616325f135b64726e9b0b834ed733534e"}
+  [4;35;1mUserRating Create (1.4ms)[0m   [0mINSERT INTO "user_ratings" ("rating", "reference_number", "created_at", "dimension_id", "updated_at", "user_id", "channel") VALUES(5, 5574923, '2009-04-02 06:04:21', 1, '2009-04-02 06:04:21', 1, 'mobile')[0m
+Redirected to /situational_data_entry
+Completed in 29ms (DB: 1) | 302 Found [http://localhost/rating/create]
+
+
+Processing SituationalDataEntryController#index (for 127.0.0.1 at 2009-04-02 17:04:21) [GET]
+Rendering template within layouts/application
+Rendering situational_data_entry/index
+Completed in 10ms (View: 7, DB: 0) | 200 OK [http://localhost/situational_data_entry]
+
+
+Processing SituationalDataEntryController#create (for 127.0.0.1 at 2009-04-02 17:04:24) [POST]
+  Parameters: {"location"=>"ccd", "commit"=>"Submit", "authenticity_token"=>"ee9f691616325f135b64726e9b0b834ed733534e", "accompanying_people"=>"xzc", "answer"=>"yes"}
+  [4;36;1mSituationalData Load (0.2ms)[0m   [0;1mSELECT * FROM "situational_datas" WHERE ("situational_datas".user_rating_id = 2) LIMIT 1[0m
+  [4;35;1mSituationalData Create (2.9ms)[0m   [0mINSERT INTO "situational_datas" ("location", "user_rating_id", "accompanying_people", "significant_occurences") VALUES('ccd', 2, 'xzc', NULL)[0m
+Redirected to /significant_occurences
+Completed in 28ms (DB: 3) | 302 Found [http://localhost/situational_data_entry/create]
+
+
+Processing SignificantOccurencesController#index (for 127.0.0.1 at 2009-04-02 17:04:24) [GET]
+Rendering template within layouts/application
+Rendering significant_occurences/index
+Completed in 11ms (View: 7, DB: 0) | 200 OK [http://localhost/significant_occurences]
+
+
+Processing SignificantOccurencesController#create (for 127.0.0.1 at 2009-04-02 17:04:26) [POST]
+  Parameters: {"commit"=>"Submit", "authenticity_token"=>"ee9f691616325f135b64726e9b0b834ed733534e", "significant_occurences"=>"zxczxc"}
+  [4;36;1mSituationalData Load (0.4ms)[0m   [0;1mSELECT * FROM "situational_datas" WHERE ("situational_datas".user_rating_id = 2) LIMIT 1[0m
+  [4;35;1mSituationalData Update (1.2ms)[0m   [0mUPDATE "situational_datas" SET "significant_occurences" = 'zxczxc' WHERE "id" = 2[0m
+Redirected to /summary
+Completed in 22ms (DB: 2) | 302 Found [http://localhost/significant_occurences/create]
+
+
+Processing SummaryController#index (for 127.0.0.1 at 2009-04-02 17:04:26) [GET]
+Rendering template within layouts/application
+Rendering summary/index
+Completed in 14ms (View: 10, DB: 0) | 200 OK [http://localhost/summary]
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (8.5ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (7.3ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (1)
+  [4;36;1mSQL (7.2ms)[0m   [0;1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "usernumber" varchar(255), "password" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (9.4ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('1')[0m
+Migrating to CreateDimensions (2)
+  [4;36;1mSQL (7.0ms)[0m   [0;1mCREATE TABLE "dimensions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "user_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (25.9ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('2')[0m
+Migrating to CreateUserRatings (3)
+  [4;36;1mSQL (8.1ms)[0m   [0;1mCREATE TABLE "user_ratings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "rating" integer, "reference_number" integer, "channel" varchar(255), "user_id" integer, "dimension_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (10.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('3')[0m
+Migrating to CreateUserDimensionsMapping (4)
+  [4;36;1mSQL (9.7ms)[0m   [0;1mCREATE TABLE "dimensions_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "dimension_id" integer) [0m
+  [4;35;1mSQL (8.7ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('4')[0m
+Migrating to CreateSituationalDatas (5)
+  [4;36;1mSQL (10.2ms)[0m   [0;1mCREATE TABLE "situational_datas" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "location" varchar(255), "accompanying_people" text, "significant_occurences" text, "user_rating_id" integer) [0m
+  [4;35;1mSQL (40.6ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('5')[0m
+Migrating to InitialData (6)
+  [4;36;1mDimension Create (1.3ms)[0m   [0;1mINSERT INTO "dimensions" ("name", "created_at", "updated_at", "user_id", "description") VALUES('Irritability', '2009-04-02 06:10:30', '2009-04-02 06:10:30', NULL, 'How would you rate your irritability on a scale of 1 to 10?')[0m
+  [4;35;1mUser Create (1.8ms)[0m   [0mINSERT INTO "users" ("created_at", "updated_at", "usernumber", "password") VALUES('2009-04-02 06:10:30', '2009-04-02 06:10:30', '1234', '1234')[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO "dimensions_users" ("dimension_id", "id", "user_id") VALUES (1, 1, 1)[0m
+  [4;35;1mSQL (7.9ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('6')[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("dimensions")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("dimensions_users")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("situational_datas")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_list("user_ratings")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("users")[0m
+
+
+Processing LoginsController#index (for 127.0.0.1 at 2009-04-02 17:10:46) [GET]
+Rendering template within layouts/application
+Rendering logins/index
+Completed in 14ms (View: 11, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginsController#create (for 127.0.0.1 at 2009-04-02 17:10:53) [POST]
+  Parameters: {"commit"=>"Login", "authenticity_token"=>"ee9f691616325f135b64726e9b0b834ed733534e", "usernumber"=>"1234", "password"=>"1234"}
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE (usernumber = '1234' and password = '1234') LIMIT 1[0m
+Redirected to /homes
+Completed in 48ms (DB: 1) | 302 Found [http://localhost/logins]
+
+
+Processing HomesController#index (for 127.0.0.1 at 2009-04-02 17:10:54) [GET]
+Rendering template within layouts/application
+Rendering homes/index
+  [4;35;1mDimension Load (0.6ms)[0m   [0mSELECT * FROM "dimensions" INNER JOIN "dimensions_users" ON "dimensions".id = "dimensions_users".dimension_id WHERE ("dimensions_users".user_id = 1 ) [0m
+Completed in 23ms (View: 11, DB: 1) | 200 OK [http://localhost/homes]
+
+
+Processing HomesController#create (for 127.0.0.1 at 2009-04-02 17:10:56) [POST]
+  Parameters: {"commit"=>"Rate", "authenticity_token"=>"36848dadc592416228a2cc481eb988a4f8d175e4", "selected_dimension_id"=>"1"}
+  [4;36;1mDimension Load (0.4ms)[0m   [0;1mSELECT * FROM "dimensions" WHERE ("dimensions"."id" = '1') LIMIT 1[0m
+Redirected to /rating
+Completed in 15ms (DB: 0) | 302 Found [http://localhost/homes]
+
+
+Processing RatingController#index (for 127.0.0.1 at 2009-04-02 17:10:56) [GET]
+Rendering template within layouts/application
+Rendering rating/index
+Completed in 13ms (View: 10, DB: 0) | 200 OK [http://localhost/rating]
+
+
+Processing RatingController#create (for 127.0.0.1 at 2009-04-02 17:10:57) [POST]
+  Parameters: {"commit"=>"Submit", "selected_rating"=>"5", "authenticity_token"=>"36848dadc592416228a2cc481eb988a4f8d175e4"}
+  [4;35;1mUserRating Create (0.4ms)[0m   [0mINSERT INTO "user_ratings" ("rating", "reference_number", "created_at", "dimension_id", "updated_at", "user_id", "channel") VALUES(5, 7133499, '2009-04-02 06:10:57', 1, '2009-04-02 06:10:57', 1, 'mobile')[0m
+Redirected to /situational_data_entry
+Completed in 26ms (DB: 0) | 302 Found [http://localhost/rating/create]
+
+
+Processing SituationalDataEntryController#index (for 127.0.0.1 at 2009-04-02 17:10:57) [GET]
+Rendering template within layouts/application
+Rendering situational_data_entry/index
+Completed in 13ms (View: 8, DB: 0) | 200 OK [http://localhost/situational_data_entry]
+
+
+Processing SituationalDataEntryController#create (for 127.0.0.1 at 2009-04-02 17:11:00) [POST]
+  Parameters: {"location"=>"sdf", "commit"=>"Submit", "authenticity_token"=>"36848dadc592416228a2cc481eb988a4f8d175e4", "accompanying_people"=>"sdf", "answer"=>"yes"}
+  [4;36;1mSituationalData Load (0.2ms)[0m   [0;1mSELECT * FROM "situational_datas" WHERE ("situational_datas".user_rating_id = 1) LIMIT 1[0m
+  [4;35;1mSituationalData Create (1.3ms)[0m   [0mINSERT INTO "situational_datas" ("location", "user_rating_id", "accompanying_people", "significant_occurences") VALUES('sdf', 1, 'sdf', NULL)[0m
+Redirected to /significant_occurences
+Completed in 109ms (DB: 2) | 302 Found [http://localhost/situational_data_entry/create]
+
+
+Processing SignificantOccurencesController#index (for 127.0.0.1 at 2009-04-02 17:11:00) [GET]
+Rendering template within layouts/application
+Rendering significant_occurences/index
+Completed in 9ms (View: 6, DB: 0) | 200 OK [http://localhost/significant_occurences]
+
+
+Processing SignificantOccurencesController#create (for 127.0.0.1 at 2009-04-02 17:11:02) [POST]
+  Parameters: {"commit"=>"Submit", "authenticity_token"=>"36848dadc592416228a2cc481eb988a4f8d175e4", "significant_occurences"=>"sdfsdf"}
+  [4;36;1mSituationalData Load (0.3ms)[0m   [0;1mSELECT * FROM "situational_datas" WHERE ("situational_datas".user_rating_id = 1) LIMIT 1[0m
+  [4;35;1mSituationalData Update (0.3ms)[0m   [0mUPDATE "situational_datas" SET "significant_occurences" = 'sdfsdf' WHERE "id" = 1[0m
+Redirected to /summary
+Completed in 20ms (DB: 1) | 302 Found [http://localhost/significant_occurences/create]
+
+
+Processing SummaryController#index (for 127.0.0.1 at 2009-04-02 17:11:02) [GET]
+Rendering template within layouts/application
+Rendering summary/index
+Completed in 16ms (View: 12, DB: 0) | 200 OK [http://localhost/summary]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2009-04-02 17:11:15) [GET]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSELECT count(DISTINCT "users".id) AS count_all FROM "users" LEFT OUTER JOIN "dimensions_users" ON "dimensions_users".user_id = "users".id LEFT OUTER JOIN "dimensions" ON "dimensions".id = "dimensions_users".dimension_id LEFT OUTER JOIN "user_ratings" ON user_ratings.user_id = users.id [0m
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT "users".* FROM "users" ORDER BY users."id" ASC LIMIT 15 OFFSET 0[0m
+  [4;35;1mDimension Load (0.4ms)[0m   [0mSELECT "dimensions".*, t0.user_id as the_parent_record_id FROM "dimensions" INNER JOIN "dimensions_users" as t0 ON "dimensions".id = t0.dimension_id WHERE (t0.user_id = 1) [0m
+  [4;36;1mUserRating Load (0.4ms)[0m   [0;1mSELECT "user_ratings".* FROM "user_ratings" WHERE ("user_ratings".user_id = 1) [0m
+Rendering template within layouts/application
+Rendering users/list
+  [4;35;1mSQL (0.5ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+Rendered _list_header (7.8ms)
+Rendered _list_column_headings (14.5ms)
+Rendered _messages (0.5ms)
+  [4;36;1mDimension Load (0.8ms)[0m   [0;1mSELECT * FROM "dimensions" WHERE ("dimensions"."id" = 1) [0m
+Rendered _list_actions (6.9ms)
+Rendered _list_record (26.3ms)
+Rendered _list (58.4ms)
+Completed in 286ms (View: 159, DB: 3) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#nested (for 127.0.0.1 at 2009-04-02 17:11:23) [GET]
+  Parameters: {"adapter"=>"_list_inline_adapter", "id"=>"1", "associations"=>"dimensions"}
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSELECT count(*) AS count_all FROM "dimensions" [0m
+DEPRECATION WARNING: render_component_as_string is deprecated and will be removed from Rails 2.3 (Please install render_component plugin from http://github.com/rails/render_component/tree/master). (called from __send__ at /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/components.rb:68)
+  [4;35;1mSQL (1.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+Start rendering component ({:controller=>"dimensions", :params=>{:eid=>"a00efa82593d7392d2b39c1e55cf8bad", :parent_column=>"dimensions", :nested=>true, :parent_model=>User(id: integer, usernumber: string, password: string, created_at: datetime, updated_at: datetime)}, :action=>"table"}): 
+
+
+Processing DimensionsController#table (for 127.0.0.1 at 2009-04-02 17:11:23) [GET]
+  [4;36;1mSQL (1.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  Parameters: {"eid"=>"a00efa82593d7392d2b39c1e55cf8bad", "parent_column"=>"dimensions", "nested"=>true, "id"=>nil, "parent_model"=>User(id: integer, usernumber: string, password: string, created_at: datetime, updated_at: datetime)}
+  [4;35;1mSQL (0.6ms)[0m   [0mSELECT count(*) AS count_all FROM "dimensions" INNER JOIN "dimensions_users" ON "dimensions_users".dimension_id = "dimensions".id INNER JOIN "users" ON "users".id = "dimensions_users".user_id WHERE (dimensions_users.user_id = '1') [0m
+  [4;36;1mDimension Load (1.1ms)[0m   [0;1mSELECT "dimensions".* FROM "dimensions" INNER JOIN "dimensions_users" ON "dimensions_users".dimension_id = "dimensions".id INNER JOIN "users" ON "users".id = "dimensions_users".user_id WHERE (dimensions_users.user_id = '1') ORDER BY dimensions."id" ASC LIMIT 15 OFFSET 0[0m
+Rendering dimensions/list
+Rendered _list_header (5.3ms)
+Rendered _list_column_headings (8.2ms)
+Rendered _messages (0.3ms)
+Rendered _list_actions (5.7ms)
+Rendered _list_record (14.6ms)
+Rendered _list (33.0ms)
+Completed in 76ms (View: 53, DB: 5) | 200 OK [http://localhost/users/nested/1?_method=get&associations=dimensions&adapter=_list_inline_adapter]
+
+
+End of component rendering
+Rendered _nested (159.6ms)
+Rendered _messages (0.3ms)
+Rendered _list_inline_adapter (3.5ms)
+Completed in 198ms (View: 6, DB: 0) | 200 OK [http://localhost/users/nested/1?_method=get&associations=dimensions&adapter=_list_inline_adapter]
+
+
+Processing UsersController#nested (for 127.0.0.1 at 2009-04-02 17:11:29) [GET]
+  Parameters: {"adapter"=>"_list_inline_adapter", "id"=>"1", "associations"=>"user_ratings"}
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT count(*) AS count_all FROM "user_ratings" [0m
+DEPRECATION WARNING: render_component_as_string is deprecated and will be removed from Rails 2.3 (Please install render_component plugin from http://github.com/rails/render_component/tree/master). (called from __send__ at /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/components.rb:68)
+  [4;35;1mSQL (0.7ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+Start rendering component ({:controller=>"user_ratings", :params=>{:eid=>"0a61c959230653b66d5afc0753573558", :parent_column=>"user_ratings", :nested=>true, :parent_model=>User(id: integer, usernumber: string, password: string, created_at: datetime, updated_at: datetime)}, :action=>"table"}): 
+
+
+Processing UserRatingsController#table (for 127.0.0.1 at 2009-04-02 17:11:29) [GET]
+  [4;36;1mSQL (0.9ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  Parameters: {"eid"=>"0a61c959230653b66d5afc0753573558", "parent_column"=>"user_ratings", "nested"=>true, "id"=>nil, "parent_model"=>User(id: integer, usernumber: string, password: string, created_at: datetime, updated_at: datetime)}
+  [4;35;1mSQL (0.3ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSELECT count(DISTINCT "user_ratings".id) AS count_all FROM "user_ratings" LEFT OUTER JOIN "dimensions" ON "dimensions".id = "user_ratings".dimension_id LEFT OUTER JOIN "situational_datas" ON situational_datas.user_rating_id = user_ratings.id LEFT OUTER JOIN "users" ON "users".id = "user_ratings".user_id WHERE (user_ratings.user_id = '1') [0m
+  [4;35;1mUserRating Load (0.5ms)[0m   [0mSELECT "user_ratings".* FROM "user_ratings" WHERE (user_ratings.user_id = '1') ORDER BY user_ratings."id" ASC LIMIT 15 OFFSET 0[0m
+  [4;36;1mDimension Load (0.5ms)[0m   [0;1mSELECT * FROM "dimensions" WHERE ("dimensions"."id" = 1) [0m
+  [4;35;1mSituationalData Load (0.4ms)[0m   [0mSELECT "situational_datas".* FROM "situational_datas" WHERE ("situational_datas".user_rating_id = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering user_ratings/list
+Rendered _list_header (4.3ms)
+Rendered _list_column_headings (96.9ms)
+Rendered _messages (0.4ms)
+Rendered _list_actions (5.5ms)
+Rendered _list_record (19.7ms)
+Rendered _list (128.7ms)
+Completed in 217ms (View: 144, DB: 4) | 200 OK [http://localhost/users/nested/1?_method=get&associations=user_ratings&adapter=_list_inline_adapter]
+
+
+End of component rendering
+Rendered _nested (286.3ms)
+Rendered _messages (0.4ms)
+Rendered _list_inline_adapter (4.5ms)
+Completed in 312ms (View: 7, DB: 0) | 200 OK [http://localhost/users/nested/1?_method=get&associations=user_ratings&adapter=_list_inline_adapter]
+
+
+Processing SituationalDatasController#edit (for 127.0.0.1 at 2009-04-02 17:11:32) [GET]
+  Parameters: {"eid"=>"0a61c959230653b66d5afc0753573558", "parent_column"=>"user_ratings", "nested"=>"true", "adapter"=>"_list_inline_adapter", "id"=>"1", "parent_model"=>"User", "parent_controller"=>"user_ratings"}
+  [4;35;1mSituationalData Load (0.4ms)[0m   [0mSELECT * FROM "situational_datas" WHERE ("situational_datas"."id" = 1) [0m
+Rendered _form_attribute (0.9ms)
+Rendered _form_attribute (0.8ms)
+Rendered _form_attribute (0.9ms)
+Rendered _form (8.0ms)
+Rendered _update_form (21.0ms)
+Rendered _messages (0.3ms)
+Rendered _list_inline_adapter (3.3ms)
+Completed in 38ms (View: 6, DB: 0) | 200 OK [http://localhost/situational_datas/1/edit?_method=get&eid=0a61c959230653b66d5afc0753573558&nested=true&parent_column=user_ratings&parent_controller=user_ratings&parent_model=User&adapter=_list_inline_adapter]
+
+
+Processing UsersController#nested (for 127.0.0.1 at 2009-04-02 17:11:36) [GET]
+  Parameters: {"adapter"=>"_list_inline_adapter", "id"=>"1", "associations"=>"dimensions"}
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "dimensions" [0m
+DEPRECATION WARNING: render_component_as_string is deprecated and will be removed from Rails 2.3 (Please install render_component plugin from http://github.com/rails/render_component/tree/master). (called from __send__ at /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/components.rb:68)
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+Start rendering component ({:controller=>"dimensions", :params=>{:eid=>"a00efa82593d7392d2b39c1e55cf8bad", :parent_column=>"dimensions", :nested=>true, :parent_model=>User(id: integer, usernumber: string, password: string, created_at: datetime, updated_at: datetime)}, :action=>"table"}): 
+
+
+Processing DimensionsController#table (for 127.0.0.1 at 2009-04-02 17:11:36) [GET]
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  Parameters: {"eid"=>"a00efa82593d7392d2b39c1e55cf8bad", "parent_column"=>"dimensions", "nested"=>true, "id"=>nil, "parent_model"=>User(id: integer, usernumber: string, password: string, created_at: datetime, updated_at: datetime)}
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT count(*) AS count_all FROM "dimensions" INNER JOIN "dimensions_users" ON "dimensions_users".dimension_id = "dimensions".id INNER JOIN "users" ON "users".id = "dimensions_users".user_id WHERE (dimensions_users.user_id = '1') [0m
+  [4;35;1mDimension Load (0.5ms)[0m   [0mSELECT "dimensions".* FROM "dimensions" INNER JOIN "dimensions_users" ON "dimensions_users".dimension_id = "dimensions".id INNER JOIN "users" ON "users".id = "dimensions_users".user_id WHERE (dimensions_users.user_id = '1') ORDER BY dimensions."id" ASC LIMIT 15 OFFSET 0[0m
+Rendering dimensions/list
+Rendered _list_header (3.2ms)
+Rendered _list_column_headings (7.9ms)
+Rendered _messages (0.3ms)
+Rendered _list_actions (3.1ms)
+Rendered _list_record (10.4ms)
+Rendered _list (29.4ms)
+Completed in 54ms (View: 42, DB: 2) | 200 OK [http://localhost/users/nested/1?_method=get&associations=dimensions&adapter=_list_inline_adapter]
+
+
+End of component rendering
+Rendered _nested (174.1ms)
+Rendered _messages (0.3ms)
+Rendered _list_inline_adapter (3.6ms)
+Completed in 195ms (View: 6, DB: 0) | 200 OK [http://localhost/users/nested/1?_method=get&associations=dimensions&adapter=_list_inline_adapter]
+
+
+Processing DimensionsController#show (for 127.0.0.1 at 2009-04-02 17:11:43) [GET]
+  Parameters: {"eid"=>"a00efa82593d7392d2b39c1e55cf8bad", "parent_column"=>"dimensions", "nested"=>"true", "adapter"=>"_list_inline_adapter", "id"=>"1", "parent_model"=>"User"}
+  [4;36;1mDimension Load (0.5ms)[0m   [0;1mSELECT * FROM "dimensions" WHERE ("dimensions"."id" = 1) [0m
+Rendered _show_columns (3.9ms)
+Rendered _show (13.2ms)
+Rendered _messages (0.3ms)
+Rendered _list_inline_adapter (3.4ms)
+Completed in 30ms (View: 5, DB: 0) | 200 OK [http://localhost/dimensions/1?_method=get&eid=a00efa82593d7392d2b39c1e55cf8bad&nested=true&parent_column=dimensions&parent_model=User&adapter=_list_inline_adapter]
+
+
+Processing DimensionsController#show (for 127.0.0.1 at 2009-04-02 17:12:53) [GET]
+  Parameters: {"eid"=>"a00efa82593d7392d2b39c1e55cf8bad", "parent_column"=>"dimensions", "nested"=>"true", "adapter"=>"_list_inline_adapter", "id"=>"new_existing", "parent_model"=>"User"}
+  [4;35;1mDimension Load (0.2ms)[0m   [0mSELECT * FROM "dimensions" WHERE ("dimensions"."id" = 0) [0m
+
+
+ActiveRecord::RecordNotFound (Couldn't find Dimension with ID=new_existing):
+    /usr/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1528:in `find_one'
+    /usr/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1511:in `find_from_ids'
+    /usr/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:590:in `find'
+    /vendor/plugins/active_scaffold/lib/active_scaffold/finder.rb:135:in `find_if_allowed'
+    /vendor/plugins/active_scaffold/lib/active_scaffold/actions/show.rb:25:in `do_show'
+    /vendor/plugins/active_scaffold/lib/active_scaffold/actions/show.rb:8:in `show'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    /usr/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (114.1ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (3.7ms)
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/layout.erb (not_found)
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2009-04-02 17:12:56) [GET]
+  Parameters: {"adapter"=>"_list_inline_adapter", "id"=>"1"}
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendered _form_attribute (1.1ms)
+  [4;35;1mDimension Load (0.5ms)[0m   [0mSELECT * FROM "dimensions" INNER JOIN "dimensions_users" ON "dimensions".id = "dimensions_users".dimension_id WHERE ("dimensions_users".user_id = 1 ) [0m
+Rendered _form_association_header (2.7ms)
+Rendered _form_association_record (3.9ms)
+Rendered _form_attribute (2.0ms)
+Rendered _form_attribute (1.6ms)
+Rendered _form_association_record (9.6ms)
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSELECT count(*) AS count_all FROM "dimensions" [0m
+  [4;35;1mDimension Load (1.0ms)[0m   [0mSELECT * FROM "dimensions" [0m
+Rendered _form_association_footer (9.7ms)
+Rendered _horizontal_subform (46.5ms)
+Rendered _form_association (57.1ms)
+  [4;36;1mUserRating Load (0.6ms)[0m   [0;1mSELECT * FROM "user_ratings" WHERE ("user_ratings".user_id = 1) [0m
+Rendered _form_association_header (44.5ms)
+  [4;35;1mDimension Load (0.5ms)[0m   [0mSELECT * FROM "dimensions" WHERE ("dimensions"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "dimensions" [0m
+Rendered _form_attribute (2.7ms)
+Rendered _form_attribute (1.1ms)
+  [4;35;1mSituationalData Load (0.4ms)[0m   [0mSELECT * FROM "situational_datas" WHERE ("situational_datas".user_rating_id = 1) LIMIT 1[0m
+  [4;36;1mSituationalData Load (0.2ms)[0m   [0;1mSELECT * FROM "situational_datas" WHERE (user_rating_id IS NULL) [0m
+Rendered _form_attribute (2.9ms)
+Rendered _form_attribute (1.0ms)
+Rendered _form_association_record (14.4ms)
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "dimensions" [0m
+Rendered _form_attribute (1.6ms)
+Rendered _form_attribute (0.9ms)
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "situational_datas" WHERE (user_rating_id IS NULL) [0m
+Rendered _form_attribute (1.5ms)
+Rendered _form_attribute (0.9ms)
+Rendered _form_association_record (10.5ms)
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "user_ratings" WHERE (user_id IS NULL) [0m
+Rendered _form_association_footer (2.9ms)
+Rendered _horizontal_subform (76.6ms)
+Rendered _form_association (81.1ms)
+Rendered _form (305.5ms)
+Rendered _update_form (312.6ms)
+Rendered _messages (0.3ms)
+Rendered _list_inline_adapter (3.7ms)
+Completed in 335ms (View: 6, DB: 0) | 200 OK [http://localhost/users/1/edit?_method=get&adapter=_list_inline_adapter]
+
+
+Processing DimensionsController#index (for 127.0.0.1 at 2009-04-02 17:13:13) [GET]
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "dimensions" [0m
+  [4;35;1mDimension Load (0.4ms)[0m   [0mSELECT "dimensions".* FROM "dimensions" ORDER BY dimensions."id" ASC LIMIT 15 OFFSET 0[0m
+Rendering template within layouts/application
+Rendering dimensions/list
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM "dimensions" [0m
+Rendered _list_header (10.3ms)
+Rendered _list_column_headings (7.6ms)
+Rendered _messages (0.3ms)
+Rendered _list_actions (4.2ms)
+Rendered _list_record (13.0ms)
+Rendered _list (30.8ms)
+Completed in 77ms (View: 66, DB: 1) | 200 OK [http://localhost/dimensions]
+
+
+Processing DimensionsController#edit (for 127.0.0.1 at 2009-04-02 17:13:16) [GET]
+  Parameters: {"adapter"=>"_list_inline_adapter", "id"=>"1"}
+  [4;35;1mDimension Load (0.4ms)[0m   [0mSELECT * FROM "dimensions" WHERE ("dimensions"."id" = 1) [0m
+Rendered _form_attribute (0.9ms)
+Rendered _form_attribute (0.8ms)
+Rendered _form (6.0ms)
+Rendered _update_form (17.2ms)
+Rendered _messages (0.3ms)
+Rendered _list_inline_adapter (3.3ms)
+Completed in 36ms (View: 5, DB: 0) | 200 OK [http://localhost/dimensions/1/edit?_method=get&adapter=_list_inline_adapter]
+
+
+Processing LoginsController#index (for 127.0.0.1 at 2009-04-02 17:13:30) [GET]
+Rendering template within layouts/application
+Rendering logins/index
+Completed in 12ms (View: 6, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginsController#create (for 127.0.0.1 at 2009-04-02 17:13:37) [POST]
+  Parameters: {"commit"=>"Login", "authenticity_token"=>"36848dadc592416228a2cc481eb988a4f8d175e4", "usernumber"=>"1234", "password"=>"1234"}
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE (usernumber = '1234' and password = '1234') LIMIT 1[0m
+Redirected to /homes
+Completed in 6ms (DB: 1) | 302 Found [http://localhost/logins]
+
+
+Processing HomesController#index (for 127.0.0.1 at 2009-04-02 17:13:37) [GET]
+Rendering template within layouts/application
+Rendering homes/index
+  [4;35;1mDimension Load (0.5ms)[0m   [0mSELECT * FROM "dimensions" INNER JOIN "dimensions_users" ON "dimensions".id = "dimensions_users".dimension_id WHERE ("dimensions_users".user_id = 1 ) [0m
+Completed in 21ms (View: 10, DB: 1) | 200 OK [http://localhost/homes]
+
+
+Processing HomesController#create (for 127.0.0.1 at 2009-04-02 17:13:40) [POST]
+  Parameters: {"commit"=>"Rate", "authenticity_token"=>"69ba6510aa1b09e87f4999f20049213216d25414", "selected_dimension_id"=>"1"}
+  [4;36;1mDimension Load (0.4ms)[0m   [0;1mSELECT * FROM "dimensions" WHERE ("dimensions"."id" = '1') LIMIT 1[0m
+Redirected to /rating
+Completed in 11ms (DB: 0) | 302 Found [http://localhost/homes]
+
+
+Processing RatingController#index (for 127.0.0.1 at 2009-04-02 17:13:40) [GET]
+Rendering template within layouts/application
+Rendering rating/index
+Completed in 15ms (View: 11, DB: 0) | 200 OK [http://localhost/rating]
+
+
+Processing RatingController#create (for 127.0.0.1 at 2009-04-02 17:13:41) [POST]
+  Parameters: {"commit"=>"Submit", "selected_rating"=>"5", "authenticity_token"=>"69ba6510aa1b09e87f4999f20049213216d25414"}
+  [4;35;1mUserRating Create (3.3ms)[0m   [0mINSERT INTO "user_ratings" ("rating", "reference_number", "created_at", "dimension_id", "updated_at", "user_id", "channel") VALUES(5, 4935799, '2009-04-02 06:13:41', 1, '2009-04-02 06:13:41', 1, 'mobile')[0m
+Redirected to /situational_data_entry
+Completed in 52ms (DB: 3) | 302 Found [http://localhost/rating/create]
+
+
+Processing SituationalDataEntryController#index (for 127.0.0.1 at 2009-04-02 17:13:41) [GET]
+Rendering template within layouts/application
+Rendering situational_data_entry/index
+Completed in 12ms (View: 8, DB: 0) | 200 OK [http://localhost/situational_data_entry]
+
+
+Processing SituationalDataEntryController#create (for 127.0.0.1 at 2009-04-02 17:13:46) [POST]
+  Parameters: {"location"=>"", "commit"=>"Submit", "authenticity_token"=>"69ba6510aa1b09e87f4999f20049213216d25414", "accompanying_people"=>"", "answer"=>"no"}
+  [4;36;1mSituationalData Load (0.2ms)[0m   [0;1mSELECT * FROM "situational_datas" WHERE ("situational_datas".user_rating_id = 2) LIMIT 1[0m
+  [4;35;1mSituationalData Create (1.9ms)[0m   [0mINSERT INTO "situational_datas" ("location", "user_rating_id", "accompanying_people", "significant_occurences") VALUES('', 2, '', NULL)[0m
+Redirected to /summary
+Completed in 28ms (DB: 2) | 302 Found [http://localhost/situational_data_entry/create]
+
+
+Processing SummaryController#index (for 127.0.0.1 at 2009-04-02 17:13:46) [GET]
+Rendering template within layouts/application
+Rendering summary/index
+Completed in 15ms (View: 11, DB: 0) | 200 OK [http://localhost/summary]

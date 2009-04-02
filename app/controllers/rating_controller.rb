@@ -11,6 +11,7 @@ class RatingController < ApplicationController
     rating.dimension = session[:dimension]
 
     rating.channel = 'mobile'
+    rating.reference_number = 1000000 + rand(8999999)
       
     rating.save!
 
