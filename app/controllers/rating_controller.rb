@@ -10,6 +10,8 @@ class RatingController < ApplicationController
     rating.rating = params[:selected_rating]
     rating.user = session[:user]
     rating.dimension = session[:dimension]
+
+    rating.channel = 'mobile'
       
     rating.save!
 
