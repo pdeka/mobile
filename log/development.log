@@ -8391,3 +8391,190 @@ Rendered _nested (278.4ms)
 Rendered _messages (0.3ms)
 Rendered _list_inline_adapter (3.4ms)
 Completed in 300ms (View: 5, DB: 0) | 200 OK [http://localhost/users/nested/1?_method=get&associations=user_ratings&adapter=_list_inline_adapter]
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (9.6ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (7.7ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090331031256)
+  [4;36;1mSQL (7.2ms)[0m   [0;1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "firstname" varchar(255), "lastname" varchar(255), "username" varchar(255), "password" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (7.0ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090331031256')[0m
+Migrating to CreateDimensions (20090401033229)
+  [4;36;1mSQL (5.1ms)[0m   [0;1mCREATE TABLE "dimensions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "user_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (14.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090401033229')[0m
+Migrating to CreateUserRatings (20090401040617)
+  [4;36;1mSQL (13.2ms)[0m   [0;1mCREATE TABLE "user_ratings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "rating" integer, "reference_number" integer, "channel" varchar(255), "user_id" integer, "dimension_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (6.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090401040617')[0m
+Migrating to CreateUserDimensionsMapping (20090402002600)
+  [4;36;1mSQL (9.3ms)[0m   [0;1mCREATE TABLE "dimensions_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "dimension_id" integer) [0m
+  [4;35;1mSQL (6.5ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090402002600')[0m
+Migrating to CreateSituationalDatas (20090402005713)
+  [4;36;1mSQL (9.0ms)[0m   [0;1mCREATE TABLE "situational_datas" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "location" varchar(255), "accompanying_people" text, "significant_occurences" text, "user_rating" integer) [0m
+  [4;35;1mSQL (14.5ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090402005713')[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("dimensions")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("dimensions_users")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("situational_datas")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("user_ratings")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("users")[0m
+
+
+Processing UsersController#index (for 127.0.0.1 at 2009-04-02 12:03:39) [GET]
+  [4;36;1mSQL (0.3ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSELECT count(DISTINCT "users".id) AS count_all FROM "users" LEFT OUTER JOIN "dimensions_users" ON "dimensions_users".user_id = "users".id LEFT OUTER JOIN "dimensions" ON "dimensions".id = "dimensions_users".dimension_id LEFT OUTER JOIN "user_ratings" ON user_ratings.user_id = users.id [0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT "users".* FROM "users" ORDER BY users."id" ASC LIMIT 15 OFFSET 0[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT "users".* FROM "users" ORDER BY users."id" ASC LIMIT 15 OFFSET 0[0m
+Rendering template within layouts/application
+Rendering users/list
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+Rendered _list_header (4.7ms)
+Rendered _list_column_headings (10.8ms)
+Rendered _messages (0.3ms)
+Rendered _list (17.7ms)
+Completed in 75ms (View: 39, DB: 1) | 200 OK [http://localhost/users]
+
+
+Processing DimensionsController#index (for 127.0.0.1 at 2009-04-02 12:03:46) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "dimensions" [0m
+  [4;36;1mDimension Load (0.2ms)[0m   [0;1mSELECT "dimensions".* FROM "dimensions" ORDER BY dimensions."id" ASC LIMIT 15 OFFSET 0[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT "dimensions".* FROM "dimensions" ORDER BY dimensions."id" ASC LIMIT 15 OFFSET 0[0m
+Rendering template within layouts/application
+Rendering dimensions/list
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM "dimensions" [0m
+Rendered _list_header (11.1ms)
+Rendered _list_column_headings (6.9ms)
+Rendered _messages (0.3ms)
+Rendered _list (13.9ms)
+Completed in 51ms (View: 40, DB: 1) | 200 OK [http://localhost/dimensions]
+
+
+Processing DimensionsController#new (for 127.0.0.1 at 2009-04-02 12:03:48) [GET]
+  Parameters: {"adapter"=>"_list_inline_adapter"}
+Rendered _form_attribute (0.9ms)
+Rendered _form_attribute (0.9ms)
+Rendered _form (5.7ms)
+Rendered _create_form (18.2ms)
+Rendered _messages (0.3ms)
+Rendered _list_inline_adapter (3.3ms)
+Completed in 35ms (View: 5, DB: 0) | 200 OK [http://localhost/dimensions/new?_method=get&adapter=_list_inline_adapter]
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (13.2ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (13.1ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090331031256)
+  [4;36;1mSQL (10.0ms)[0m   [0;1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "firstname" varchar(255), "lastname" varchar(255), "username" varchar(255), "password" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (6.4ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090331031256')[0m
+Migrating to CreateDimensions (20090401033229)
+  [4;36;1mSQL (17.7ms)[0m   [0;1mCREATE TABLE "dimensions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "user_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (16.5ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090401033229')[0m
+Migrating to CreateUserRatings (20090401040617)
+  [4;36;1mSQL (7.9ms)[0m   [0;1mCREATE TABLE "user_ratings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "rating" integer, "reference_number" integer, "channel" varchar(255), "user_id" integer, "dimension_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (5.9ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090401040617')[0m
+Migrating to CreateUserDimensionsMapping (20090402002600)
+  [4;36;1mSQL (9.8ms)[0m   [0;1mCREATE TABLE "dimensions_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "dimension_id" integer) [0m
+  [4;35;1mSQL (14.4ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090402002600')[0m
+Migrating to CreateSituationalDatas (20090402005713)
+  [4;36;1mSQL (9.9ms)[0m   [0;1mCREATE TABLE "situational_datas" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "location" varchar(255), "accompanying_people" text, "significant_occurences" text, "user_rating" integer) [0m
+  [4;35;1mSQL (15.6ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090402005713')[0m
+Migrating to InitialData (20090402010708)
+  [4;36;1mDimension Create (0.4ms)[0m   [0;1mINSERT INTO "dimensions" ("name", "created_at", "updated_at", "user_id", "description") VALUES('Irritability', '2009-04-02 01:13:57', '2009-04-02 01:13:57', NULL, 'How would you rate your irritability on a scale of 1 to 10?')[0m
+  [4;35;1mUser Create (0.3ms)[0m   [0mINSERT INTO "users" ("created_at", "updated_at", "username", "lastname", "firstname", "password") VALUES('2009-04-02 01:13:57', '2009-04-02 01:13:57', 'josh', 'Deka', 'Josh', 'josh')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO "dimensions_users" ("dimension_id", "id", "user_id") VALUES (1, 1, 1)[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090402010708')[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mPRAGMA index_list("dimensions")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("dimensions_users")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("situational_datas")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("user_ratings")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("users")[0m
+
+
+Processing UsersController#index (for 127.0.0.1 at 2009-04-02 12:14:14) [GET]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSELECT count(DISTINCT "users".id) AS count_all FROM "users" LEFT OUTER JOIN "dimensions_users" ON "dimensions_users".user_id = "users".id LEFT OUTER JOIN "dimensions" ON "dimensions".id = "dimensions_users".dimension_id LEFT OUTER JOIN "user_ratings" ON user_ratings.user_id = users.id [0m
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT "users".* FROM "users" ORDER BY users."id" ASC LIMIT 15 OFFSET 0[0m
+  [4;35;1mDimension Load (0.6ms)[0m   [0mSELECT "dimensions".*, t0.user_id as the_parent_record_id FROM "dimensions" INNER JOIN "dimensions_users" as t0 ON "dimensions".id = t0.dimension_id WHERE (t0.user_id = 1) [0m
+  [4;36;1mUserRating Load (0.2ms)[0m   [0;1mSELECT "user_ratings".* FROM "user_ratings" WHERE ("user_ratings".user_id = 1) [0m
+Rendering template within layouts/application
+Rendering users/list
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+Rendered _list_header (4.4ms)
+Rendered _list_column_headings (10.5ms)
+Rendered _messages (0.6ms)
+Rendered _list_actions (4.3ms)
+Rendered _list_record (48.8ms)
+Rendered _list (70.1ms)
+Completed in 133ms (View: 91, DB: 3) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#nested (for 127.0.0.1 at 2009-04-02 12:14:17) [GET]
+  Parameters: {"adapter"=>"_list_inline_adapter", "id"=>"1", "associations"=>"dimensions"}
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT count(*) AS count_all FROM "dimensions" [0m
+DEPRECATION WARNING: render_component_as_string is deprecated and will be removed from Rails 2.3 (Please install render_component plugin from http://github.com/rails/render_component/tree/master). (called from __send__ at /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/components.rb:68)
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+Start rendering component ({:controller=>"dimensions", :params=>{:parent_column=>"dimensions", :parent_model=>User(id: integer, firstname: string, lastname: string, username: string, password: string, created_at: datetime, updated_at: datetime), :eid=>"a00efa82593d7392d2b39c1e55cf8bad", :nested=>true}, :action=>"table"}): 
+
+
+Processing DimensionsController#table (for 127.0.0.1 at 2009-04-02 12:14:17) [GET]
+  [4;35;1mSQL (0.6ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  Parameters: {"parent_column"=>"dimensions", "eid"=>"a00efa82593d7392d2b39c1e55cf8bad", "nested"=>true, "id"=>nil, "parent_model"=>User(id: integer, firstname: string, lastname: string, username: string, password: string, created_at: datetime, updated_at: datetime)}
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT count(*) AS count_all FROM "dimensions" INNER JOIN "dimensions_users" ON "dimensions_users".dimension_id = "dimensions".id INNER JOIN "users" ON "users".id = "dimensions_users".user_id WHERE (dimensions_users.user_id = '1') [0m
+  [4;35;1mDimension Load (0.5ms)[0m   [0mSELECT "dimensions".* FROM "dimensions" INNER JOIN "dimensions_users" ON "dimensions_users".dimension_id = "dimensions".id INNER JOIN "users" ON "users".id = "dimensions_users".user_id WHERE (dimensions_users.user_id = '1') ORDER BY dimensions."id" ASC LIMIT 15 OFFSET 0[0m
+Rendering dimensions/list
+Rendered _list_header (5.9ms)
+Rendered _list_column_headings (9.7ms)
+Rendered _messages (0.4ms)
+Rendered _list_actions (5.8ms)
+Rendered _list_record (14.4ms)
+Rendered _list (37.6ms)
+Completed in 67ms (View: 57, DB: 2) | 200 OK [http://localhost/users/nested/1?_method=get&associations=dimensions&adapter=_list_inline_adapter]
+
+
+End of component rendering
+Rendered _nested (114.9ms)
+Rendered _messages (0.4ms)
+Rendered _list_inline_adapter (3.4ms)
+Completed in 137ms (View: 5, DB: 0) | 200 OK [http://localhost/users/nested/1?_method=get&associations=dimensions&adapter=_list_inline_adapter]
+  [4;36;1mSQL (1.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSELECT version FROM schema_migrations[0m

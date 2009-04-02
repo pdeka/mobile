@@ -2,7 +2,7 @@ class CreateUserRatings < ActiveRecord::Migration
   def self.up
     create_table :user_ratings do |t|
       t.integer :rating
-      t.string :situational_data
+
       t.integer :reference_number
       t.string :channel
 
