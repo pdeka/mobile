@@ -8758,3 +8758,115 @@ Rendered _nested (175.7ms)
 Rendered _messages (0.3ms)
 Rendered _list_inline_adapter (3.7ms)
 Completed in 201ms (View: 6, DB: 0) | 200 OK [http://localhost/users/nested/2?_method=get&associations=dimensions&adapter=_list_inline_adapter]
+
+
+Processing SituationalDatasController#index (for 127.0.0.1 at 2009-04-02 12:29:19) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "situational_datas" [0m
+  [4;36;1mSituationalData Load (0.2ms)[0m   [0;1mSELECT "situational_datas".* FROM "situational_datas" ORDER BY situational_datas."id" ASC LIMIT 15 OFFSET 0[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT "situational_datas".* FROM "situational_datas" ORDER BY situational_datas."id" ASC LIMIT 15 OFFSET 0[0m
+Rendering template within layouts/situational_datas
+Rendering situational_datas/list
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM "situational_datas" [0m
+Rendered _list_header (9.4ms)
+Rendered _list_column_headings (6.8ms)
+Rendered _messages (0.3ms)
+Rendered _list (13.5ms)
+Completed in 48ms (View: 37, DB: 1) | 200 OK [http://localhost/situational_datas]
+
+
+Processing SituationalDatasController#index (for 127.0.0.1 at 2009-04-02 12:29:59) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "situational_datas" [0m
+  [4;36;1mSituationalData Load (0.2ms)[0m   [0;1mSELECT "situational_datas".* FROM "situational_datas" ORDER BY situational_datas."id" ASC LIMIT 15 OFFSET 0[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT "situational_datas".* FROM "situational_datas" ORDER BY situational_datas."id" ASC LIMIT 15 OFFSET 0[0m
+Rendering template within layouts/application
+Rendering situational_datas/list
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM "situational_datas" [0m
+Rendered _list_header (8.6ms)
+Rendered _list_column_headings (6.5ms)
+Rendered _messages (0.3ms)
+Rendered _list (14.1ms)
+Completed in 49ms (View: 38, DB: 1) | 200 OK [http://localhost/situational_datas]
+
+
+Processing SituationalDatasController#index (for 127.0.0.1 at 2009-04-02 12:30:42) [GET]
+  [4;35;1mSQL (0.5ms)[0m   [0mSELECT count(*) AS count_all FROM "situational_datas" [0m
+  [4;36;1mSituationalData Load (0.3ms)[0m   [0;1mSELECT "situational_datas".* FROM "situational_datas" ORDER BY situational_datas."id" ASC LIMIT 15 OFFSET 0[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT "situational_datas".* FROM "situational_datas" ORDER BY situational_datas."id" ASC LIMIT 15 OFFSET 0[0m
+Rendering template within layouts/application
+Rendering situational_datas/list
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM "situational_datas" [0m
+Rendered _list_header (13.7ms)
+Rendered _list_column_headings (7.1ms)
+Rendered _messages (0.3ms)
+Rendered _list (14.3ms)
+Completed in 69ms (View: 50, DB: 1) | 200 OK [http://localhost/situational_datas]
+
+
+Processing LoginsController#index (for 127.0.0.1 at 2009-04-02 12:51:29) [GET]
+Rendering template within layouts/application
+Rendering logins/index
+Completed in 14ms (View: 7, DB: 0) | 200 OK [http://localhost/logins]
+
+
+Processing LoginsController#index (for 127.0.0.1 at 2009-04-02 12:53:06) [GET]
+Rendering template within layouts/application
+Rendering logins/index
+Completed in 9ms (View: 6, DB: 0) | 200 OK [http://localhost/logins]
+
+
+Processing LoginsController#create (for 127.0.0.1 at 2009-04-02 12:53:26) [POST]
+  Parameters: {"commit"=>"Login", "authenticity_token"=>"7fb0524811d80ffdb2f7cbbd1fb037978a6dfe66", "username"=>"josh", "password"=>"josh"}
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE (username = 'josh') LIMIT 1[0m
+Redirected to /homes
+Completed in 7ms (DB: 1) | 302 Found [http://localhost/logins]
+
+
+Processing HomesController#index (for 127.0.0.1 at 2009-04-02 12:53:26) [GET]
+Rendering template within layouts/application
+Rendering homes/index
+  [4;36;1mDimension Load (0.5ms)[0m   [0;1mSELECT * FROM "dimensions" INNER JOIN "dimensions_users" ON "dimensions".id = "dimensions_users".dimension_id WHERE ("dimensions_users".user_id = 2 ) [0m
+Completed in 22ms (View: 10, DB: 1) | 200 OK [http://localhost/homes]
+
+
+Processing HomesController#create (for 127.0.0.1 at 2009-04-02 12:53:28) [POST]
+  Parameters: {"commit"=>"Rate", "authenticity_token"=>"73656787ff3a71465400a5409853f6913655e836", "selected_dimension_id"=>"2"}
+  [4;35;1mDimension Load (0.6ms)[0m   [0mSELECT * FROM "dimensions" WHERE ("dimensions"."id" = '2') LIMIT 1[0m
+Redirected to /rating
+Completed in 21ms (DB: 1) | 302 Found [http://localhost/homes]
+
+
+Processing RatingController#index (for 127.0.0.1 at 2009-04-02 12:53:28) [GET]
+Rendering template within layouts/application
+Rendering rating/index
+Completed in 89ms (View: 86, DB: 0) | 200 OK [http://localhost/rating]
+
+
+Processing RatingController#create (for 127.0.0.1 at 2009-04-02 12:53:30) [POST]
+  Parameters: {"commit"=>"Submit", "selected_rating"=>"5", "authenticity_token"=>"73656787ff3a71465400a5409853f6913655e836"}
+  [4;36;1mUserRating Create (0.9ms)[0m   [0;1mINSERT INTO "user_ratings" ("rating", "reference_number", "created_at", "dimension_id", "updated_at", "user_id", "channel") VALUES(5, NULL, '2009-04-02 01:53:30', 2, '2009-04-02 01:53:30', 2, 'mobile')[0m
+Redirected to /situational_data_entry
+Completed in 53ms (DB: 1) | 302 Found [http://localhost/rating/create]
+
+
+Processing SituationalDataEntryController#index (for 127.0.0.1 at 2009-04-02 12:53:30) [GET]
+Rendering template within layouts/application
+Rendering situational_data_entry/index
+Completed in 11ms (View: 7, DB: 0) | 200 OK [http://localhost/situational_data_entry]
+
+
+Processing SituationalDataEntryController#index (for 127.0.0.1 at 2009-04-02 12:55:25) [GET]
+Rendering template within layouts/application
+Rendering situational_data_entry/index
+Completed in 16ms (View: 11, DB: 0) | 200 OK [http://localhost/situational_data_entry]
+
+
+Processing SituationalDataEntryController#index (for 127.0.0.1 at 2009-04-02 12:56:27) [GET]
+Rendering template within layouts/application
+Rendering situational_data_entry/index
+Completed in 10ms (View: 7, DB: 0) | 200 OK [http://localhost/situational_data_entry]
+
+
+Processing SituationalDataEntryController#index (for 127.0.0.1 at 2009-04-02 12:57:03) [GET]
+Rendering template within layouts/application
+Rendering situational_data_entry/index
+Completed in 10ms (View: 6, DB: 0) | 200 OK [http://localhost/situational_data_entry]

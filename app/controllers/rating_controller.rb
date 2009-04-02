@@ -15,6 +15,6 @@ class RatingController < ApplicationController
       
     rating.save!
 
-    redirect_to homes_path
+    redirect_to '/situational_data_entry'
   end
 end

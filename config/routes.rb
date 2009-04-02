@@ -11,6 +11,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :logins
 
   map.rating '/rating', :controller => 'rating', :action => 'index'
+  map.rating '/situational_data_entry', :controller => 'situational_data_entry', :action => 'index'
 
   # The priority is based upon order of creation: first created -> highest priority.
 
