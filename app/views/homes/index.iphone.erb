@@ -2,11 +2,11 @@
 
 <% form_tag homes_path do %>
 
-    <% if (@dimensions.size > 0) %>
-        <%= select_tag :selected_dimension_id, options_from_collection_for_select(@dimensions, 'id', 'name') %>
-        <p><%= submit_tag 'Rate', :class => 'un_ltt_button' %></p>
-    <% else %>
-        <p>You have already rated all your dimensions for this session</p>
+    <% @user.dimensions.each do |dimension| %>
+        <p><%= dimension.name %></p>
+        <p><% (1..5).each do |number| %> <%= number.to_s %>&nbsp; <%= radio_button_tag "#{dimension.name}_rating", "#{number}", number == 2 %> &nbsp;&nbsp;<%end%></p>
     <% end %>
+
+    <p><%= submit_tag 'Rate', :class => 'un_ltt_button' %></p>
 
 <% end %>

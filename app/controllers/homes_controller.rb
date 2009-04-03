@@ -2,27 +2,31 @@ class HomesController < ApplicationController
 
   layout "application"
 
+
+protect_from_forgery :only => [:destroy]
+
   # GET /homes
   # GET /homes.xml
+
   def index
     @user = session[:user]
-    @dimensions = @user.dimensions.dup
-
-    # filter out dimensions which have already been rated
-    rating_session = session[:rating_session]
-    rating_session.user_ratings.each do |rating|
-      @dimensions.delete rating.dimension
-    end
-
-    respond_to do |format|
-      format.iphone
-    end
   end
 
   def create
-    session[:dimension] = Dimension.find_by_id(params[:selected_dimension_id])
+    user = session[:user]
+    user.dimensions.each do |dimension|
+      user_rating = UserRating.new
+      user_rating.rating = params["#{dimension.name}_rating"].to_i
+      user_rating.rating_session = session[:rating_session]
+      user_rating.dimension = dimension
 
-    redirect_to '/rating'
+      user_rating.save!
+    end
+
+    respond_to do |format|
+      format.iphone { render :template => 'situational_data_entry/index' }
+    end
+
   end
 
 end

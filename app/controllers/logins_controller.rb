@@ -2,6 +2,8 @@ class LoginsController < ApplicationController
 
   layout "application"
 
+  protect_from_forgery :only => [:destroy]
+
   def index
   end
 
@@ -16,7 +18,6 @@ class LoginsController < ApplicationController
     if (@user)
       session[:user] = @user
       open_ratings_session @user
-#      redirect_to homes_path
 
       initialise_homepage_info
       respond_to do |format|
