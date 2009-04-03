@@ -18168,3 +18168,289 @@ Processing HomesController#index (for 127.0.0.1 at 2009-04-03 11:11:18) [GET]
 Rendering template within layouts/application
 Rendering homes/index
 Completed in 22ms (View: 6, DB: 1) | 200 OK [http://localhost/homes]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2009-04-03 11:15:17) [GET]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSELECT count(DISTINCT "users".id) AS count_all FROM "users" LEFT OUTER JOIN "dimensions_users" ON "dimensions_users".user_id = "users".id LEFT OUTER JOIN "dimensions" ON "dimensions".id = "dimensions_users".dimension_id LEFT OUTER JOIN "rating_sessions" ON rating_sessions.user_id = users.id [0m
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT "users".* FROM "users" ORDER BY users."id" ASC LIMIT 15 OFFSET 0[0m
+  [4;35;1mDimension Load (0.5ms)[0m   [0mSELECT "dimensions".*, t0.user_id as the_parent_record_id FROM "dimensions" INNER JOIN "dimensions_users" as t0 ON "dimensions".id = t0.dimension_id WHERE (t0.user_id = 1) [0m
+  [4;36;1mRatingSession Load (0.6ms)[0m   [0;1mSELECT "rating_sessions".* FROM "rating_sessions" WHERE ("rating_sessions".user_id = 1) [0m
+Rendering template within layouts/application
+Rendering users/list
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+Rendered _list_header (5.2ms)
+Rendered _list_column_headings (8.1ms)
+Rendered _messages (0.3ms)
+Rendered _list_actions (4.4ms)
+Rendered _list_record (56.2ms)
+Rendered _list (74.7ms)
+Completed in 142ms (View: 96, DB: 3) | 200 OK [http://localhost/users]
+
+
+Processing LoginsController#index (for 127.0.0.1 at 2009-04-03 11:15:55) [GET]
+Rendering template within layouts/application
+Rendering logins/index
+Completed in 11ms (View: 7, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginsController#create (for 127.0.0.1 at 2009-04-03 11:16:06) [POST]
+  Parameters: {"commit"=>"Login", "authenticity_token"=>"29e9219c32d0a8869042ccb465cef01789ac85a2", "usernumber"=>"1234", "password"=>"1234"}
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE (usernumber = '1234' and password = '1234') LIMIT 1[0m
+  [4;35;1mRatingSession Create (0.6ms)[0m   [0mINSERT INTO "rating_sessions" ("reference_number", "created_at", "updated_at", "user_id", "channel") VALUES(9565042, '2009-04-03 00:16:06', '2009-04-03 00:16:06', 1, 'mobile')[0m
+Redirected to /homes
+Completed in 24ms (DB: 1) | 302 Found [http://localhost/logins]
+
+
+Processing HomesController#index (for 127.0.0.1 at 2009-04-03 11:16:06) [GET]
+  [4;36;1mDimension Load (0.5ms)[0m   [0;1mSELECT * FROM "dimensions" INNER JOIN "dimensions_users" ON "dimensions".id = "dimensions_users".dimension_id WHERE ("dimensions_users".user_id = 1 ) [0m
+  [4;35;1mUserRating Load (0.2ms)[0m   [0mSELECT * FROM "user_ratings" WHERE ("user_ratings".rating_session_id = 3) [0m
+Rendering template within layouts/application
+Rendering homes/index
+Completed in 30ms (View: 9, DB: 1) | 200 OK [http://localhost/homes]
+
+
+Processing HomesController#create (for 127.0.0.1 at 2009-04-03 11:16:11) [POST]
+  Parameters: {"commit"=>"Rate", "authenticity_token"=>"557bd6a6f9521743811bda691cd9682db39624bc", "selected_dimension_id"=>"1"}
+  [4;36;1mDimension Load (0.8ms)[0m   [0;1mSELECT * FROM "dimensions" WHERE ("dimensions"."id" = '1') LIMIT 1[0m
+Redirected to /rating
+Completed in 12ms (DB: 1) | 302 Found [http://localhost/homes]
+
+
+Processing RatingController#index (for 127.0.0.1 at 2009-04-03 11:16:11) [GET]
+Rendering template within layouts/application
+Rendering rating/index
+Completed in 16ms (View: 12, DB: 0) | 200 OK [http://localhost/rating]
+
+
+Processing RatingController#create (for 127.0.0.1 at 2009-04-03 11:16:13) [POST]
+  Parameters: {"commit"=>"Submit", "selected_rating"=>"5", "authenticity_token"=>"557bd6a6f9521743811bda691cd9682db39624bc"}
+  [4;35;1mUserRating Create (0.5ms)[0m   [0mINSERT INTO "user_ratings" ("rating", "created_at", "dimension_id", "updated_at", "rating_session_id") VALUES(5, '2009-04-03 00:16:13', 1, '2009-04-03 00:16:13', 3)[0m
+Redirected to /situational_data_entry
+Completed in 24ms (DB: 0) | 302 Found [http://localhost/rating/create]
+
+
+Processing SituationalDataEntryController#index (for 127.0.0.1 at 2009-04-03 11:16:13) [GET]
+Rendering template within layouts/application
+Rendering situational_data_entry/index
+Completed in 10ms (View: 7, DB: 0) | 200 OK [http://localhost/situational_data_entry]
+
+
+Processing SituationalDataEntryController#create (for 127.0.0.1 at 2009-04-03 11:16:16) [POST]
+  Parameters: {"location"=>"dsadasd", "commit"=>"Submit", "authenticity_token"=>"557bd6a6f9521743811bda691cd9682db39624bc", "accompanying_people"=>"asdads", "answer"=>"yes"}
+  [4;36;1mSituationalData Load (0.2ms)[0m   [0;1mSELECT * FROM "situational_datas" WHERE ("situational_datas".rating_session_id = 3) LIMIT 1[0m
+  [4;35;1mSituationalData Create (0.4ms)[0m   [0mINSERT INTO "situational_datas" ("location", "accompanying_people", "significant_occurences", "rating_session_id") VALUES('dsadasd', 'asdads', NULL, 3)[0m
+Redirected to /significant_occurences
+Completed in 22ms (DB: 1) | 302 Found [http://localhost/situational_data_entry/create]
+
+
+Processing SignificantOccurencesController#index (for 127.0.0.1 at 2009-04-03 11:16:16) [GET]
+Rendering template within layouts/application
+Rendering significant_occurences/index
+Completed in 16ms (View: 10, DB: 0) | 200 OK [http://localhost/significant_occurences]
+
+
+Processing SignificantOccurencesController#create (for 127.0.0.1 at 2009-04-03 11:16:18) [POST]
+  Parameters: {"commit"=>"Submit", "authenticity_token"=>"557bd6a6f9521743811bda691cd9682db39624bc", "significant_occurences"=>"asdasd"}
+  [4;36;1mSituationalData Load (0.4ms)[0m   [0;1mSELECT * FROM "situational_datas" WHERE ("situational_datas".rating_session_id = 3) LIMIT 1[0m
+  [4;35;1mSituationalData Update (0.3ms)[0m   [0mUPDATE "situational_datas" SET "significant_occurences" = 'asdasd' WHERE "id" = 3[0m
+Redirected to /summary
+Completed in 22ms (DB: 1) | 302 Found [http://localhost/significant_occurences/create]
+
+
+Processing SummaryController#index (for 127.0.0.1 at 2009-04-03 11:16:18) [GET]
+Rendering template within layouts/application
+Rendering summary/index
+Completed in 13ms (View: 9, DB: 0) | 200 OK [http://localhost/summary]
+
+
+Processing LoginsController#index (for 127.0.0.1 at 2009-04-03 11:26:11) [GET]
+Rendering template within layouts/application
+Rendering logins/index
+Completed in 10ms (View: 7, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing HomesController#index (for 127.0.0.1 at 2009-04-03 11:26:13) [GET]
+  [4;36;1mDimension Load (0.5ms)[0m   [0;1mSELECT * FROM "dimensions" INNER JOIN "dimensions_users" ON "dimensions".id = "dimensions_users".dimension_id WHERE ("dimensions_users".user_id = 1 ) [0m
+  [4;35;1mUserRating Load (0.4ms)[0m   [0mSELECT * FROM "user_ratings" WHERE ("user_ratings".rating_session_id = 3) [0m
+  [4;36;1mDimension Load (0.4ms)[0m   [0;1mSELECT * FROM "dimensions" WHERE ("dimensions"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering homes/index
+Completed in 22ms (View: 6, DB: 1) | 200 OK [http://localhost/homes]
+
+
+Processing LoginsController#index (for 127.0.0.1 at 2009-04-03 11:28:24) [GET]
+Rendering template within layouts/application
+Rendering logins/index
+Completed in 11ms (View: 7, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginsController#create (for 127.0.0.1 at 2009-04-03 11:28:42) [POST]
+  Parameters: {"commit"=>"Login", "authenticity_token"=>"557bd6a6f9521743811bda691cd9682db39624bc", "usernumber"=>"c", "password"=>"cxz"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE (usernumber = 'c' and password = 'cxz') LIMIT 1[0m
+Rendering template within layouts/application
+Rendering logins/index
+Completed in 54ms (View: 6, DB: 1) | 200 OK [http://localhost/logins]
+
+
+Processing LoginsController#create (for 127.0.0.1 at 2009-04-03 11:28:55) [POST]
+  Parameters: {"commit"=>"Login", "authenticity_token"=>"557bd6a6f9521743811bda691cd9682db39624bc", "usernumber"=>"1234", "password"=>"1234"}
+
+
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/request_forgery_protection.rb:86:in `verify_authenticity_token'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/callbacks.rb:178:in `send'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/callbacks.rb:178:in `evaluate_method'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/callbacks.rb:166:in `call'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:225:in `call'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:629:in `run_before_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:615:in `call_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    /usr/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (40.7ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (1.0ms)
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/layout.erb (unprocessable_entity)
+
+
+Processing LoginsController#index (for 127.0.0.1 at 2009-04-03 11:41:27) [GET]
+Rendering template within layouts/application
+Rendering logins/index
+Completed in 10ms (View: 6, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginsController#create (for 127.0.0.1 at 2009-04-03 11:41:33) [POST]
+  Parameters: {"commit"=>"Login", "authenticity_token"=>"67416164a5aa958018171eaf87aab3ef54f718cd", "usernumber"=>"1234", "password"=>"1234"}
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE (usernumber = '1234' and password = '1234') LIMIT 1[0m
+  [4;36;1mRatingSession Create (0.5ms)[0m   [0;1mINSERT INTO "rating_sessions" ("reference_number", "created_at", "updated_at", "user_id", "channel") VALUES(2188832, '2009-04-03 00:41:33', '2009-04-03 00:41:33', 1, 'mobile')[0m
+Redirected to /homes
+Completed in 48ms (DB: 1) | 302 Found [http://localhost/logins]
+
+
+Processing HomesController#index (for 127.0.0.1 at 2009-04-03 11:41:33) [GET]
+  [4;35;1mDimension Load (0.5ms)[0m   [0mSELECT * FROM "dimensions" INNER JOIN "dimensions_users" ON "dimensions".id = "dimensions_users".dimension_id WHERE ("dimensions_users".user_id = 1 ) [0m
+  [4;36;1mUserRating Load (0.2ms)[0m   [0;1mSELECT * FROM "user_ratings" WHERE ("user_ratings".rating_session_id = 4) [0m
+Rendering template within layouts/application
+Rendering homes/index
+Completed in 29ms (View: 9, DB: 1) | 200 OK [http://localhost/homes]
+
+
+Processing HomesController#create (for 127.0.0.1 at 2009-04-03 11:41:34) [POST]
+  Parameters: {"commit"=>"Rate", "authenticity_token"=>"7c7a357ad36ba30dfbda365abb4ca3c4464b2d5b", "selected_dimension_id"=>"1"}
+  [4;35;1mDimension Load (0.4ms)[0m   [0mSELECT * FROM "dimensions" WHERE ("dimensions"."id" = '1') LIMIT 1[0m
+Redirected to /rating
+Completed in 13ms (DB: 0) | 302 Found [http://localhost/homes]
+
+
+Processing RatingController#index (for 127.0.0.1 at 2009-04-03 11:41:34) [GET]
+Rendering template within layouts/application
+Rendering rating/index
+Completed in 14ms (View: 11, DB: 0) | 200 OK [http://localhost/rating]
+
+
+Processing RatingController#create (for 127.0.0.1 at 2009-04-03 11:41:36) [POST]
+  Parameters: {"commit"=>"Submit", "selected_rating"=>"5", "authenticity_token"=>"7c7a357ad36ba30dfbda365abb4ca3c4464b2d5b"}
+  [4;36;1mUserRating Create (0.8ms)[0m   [0;1mINSERT INTO "user_ratings" ("rating", "created_at", "dimension_id", "updated_at", "rating_session_id") VALUES(5, '2009-04-03 00:41:36', 1, '2009-04-03 00:41:36', 4)[0m
+Redirected to /situational_data_entry
+Completed in 22ms (DB: 1) | 302 Found [http://localhost/rating/create]
+
+
+Processing SituationalDataEntryController#index (for 127.0.0.1 at 2009-04-03 11:41:36) [GET]
+Rendering template within layouts/application
+Rendering situational_data_entry/index
+Completed in 11ms (View: 7, DB: 0) | 200 OK [http://localhost/situational_data_entry]
+
+
+Processing SituationalDataEntryController#create (for 127.0.0.1 at 2009-04-03 11:41:38) [POST]
+  Parameters: {"location"=>"sdfsd", "commit"=>"Submit", "authenticity_token"=>"7c7a357ad36ba30dfbda365abb4ca3c4464b2d5b", "accompanying_people"=>"sdf", "answer"=>"no"}
+  [4;35;1mSituationalData Load (0.5ms)[0m   [0mSELECT * FROM "situational_datas" WHERE ("situational_datas".rating_session_id = 4) LIMIT 1[0m
+  [4;36;1mSituationalData Create (0.3ms)[0m   [0;1mINSERT INTO "situational_datas" ("location", "accompanying_people", "significant_occurences", "rating_session_id") VALUES('sdfsd', 'sdf', NULL, 4)[0m
+Redirected to /summary
+Completed in 26ms (DB: 1) | 302 Found [http://localhost/situational_data_entry/create]
+
+
+Processing SummaryController#index (for 127.0.0.1 at 2009-04-03 11:41:39) [GET]
+Rendering template within layouts/application
+Rendering summary/index
+Completed in 14ms (View: 10, DB: 0) | 200 OK [http://localhost/summary]
+
+
+Processing HomesController#index (for 127.0.0.1 at 2009-04-03 11:41:41) [GET]
+  [4;35;1mDimension Load (0.5ms)[0m   [0mSELECT * FROM "dimensions" INNER JOIN "dimensions_users" ON "dimensions".id = "dimensions_users".dimension_id WHERE ("dimensions_users".user_id = 1 ) [0m
+  [4;36;1mUserRating Load (0.4ms)[0m   [0;1mSELECT * FROM "user_ratings" WHERE ("user_ratings".rating_session_id = 4) [0m
+  [4;35;1mDimension Load (0.4ms)[0m   [0mSELECT * FROM "dimensions" WHERE ("dimensions"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering homes/index
+Completed in 23ms (View: 6, DB: 1) | 200 OK [http://localhost/homes]
+
+
+Processing LoginsController#index (for 127.0.0.1 at 2009-04-03 11:51:21) [GET]
+Rendering template within layouts/application
+Rendering logins/index
+Completed in 9ms (View: 6, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2009-04-03 11:51:25) [GET]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSELECT count(DISTINCT "users".id) AS count_all FROM "users" LEFT OUTER JOIN "dimensions_users" ON "dimensions_users".user_id = "users".id LEFT OUTER JOIN "dimensions" ON "dimensions".id = "dimensions_users".dimension_id LEFT OUTER JOIN "rating_sessions" ON rating_sessions.user_id = users.id [0m
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT "users".* FROM "users" ORDER BY users."id" ASC LIMIT 15 OFFSET 0[0m
+  [4;35;1mDimension Load (0.5ms)[0m   [0mSELECT "dimensions".*, t0.user_id as the_parent_record_id FROM "dimensions" INNER JOIN "dimensions_users" as t0 ON "dimensions".id = t0.dimension_id WHERE (t0.user_id = 1) [0m
+  [4;36;1mRatingSession Load (0.8ms)[0m   [0;1mSELECT "rating_sessions".* FROM "rating_sessions" WHERE ("rating_sessions".user_id = 1) [0m
+Rendering template within layouts/application
+Rendering users/list
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+Rendered _list_header (4.7ms)
+Rendered _list_column_headings (8.2ms)
+Rendered _messages (0.3ms)
+Rendered _list_actions (4.4ms)
+Rendered _list_record (14.7ms)
+Rendered _list (32.6ms)
+Completed in 98ms (View: 53, DB: 3) | 200 OK [http://localhost/users]
+
+
+Processing LoginsController#index (for 127.0.0.1 at 2009-04-03 11:52:01) [GET]
+Rendering template within layouts/application
+Rendering logins/index
+Completed in 17ms (View: 14, DB: 0) | 200 OK [http://localhost/]
