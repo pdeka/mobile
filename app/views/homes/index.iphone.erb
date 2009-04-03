@@ -2,7 +2,11 @@
 
 <% form_tag homes_path do %>
 
-    <%= select_tag :selected_dimension_id, options_from_collection_for_select(@dimensions, 'id', 'name') %>
-    <p><%= submit_tag 'Rate', :class => 'un_ltt_button' %></p>  
+    <% if (@dimensions.size > 0) %>
+        <%= select_tag :selected_dimension_id, options_from_collection_for_select(@dimensions, 'id', 'name') %>
+        <p><%= submit_tag 'Rate', :class => 'un_ltt_button' %></p>
+    <% else %>
+        <p>You have already rated all your dimensions for this session</p>
+    <% end %>
 
 <% end %>

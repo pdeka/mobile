@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :rating_sessions
+
   map.resources :situational_datas
 
   map.resources :user_ratings

@@ -1,0 +1,22 @@
+<h1>Listing rating_sessions</h1>
+
+<table>
+  <tr>
+    <th>Reference number</th>
+    <th>Channel</th>
+  </tr>
+
+<% for rating_session in @rating_sessions %>
+  <tr>
+    <td><%=h rating_session.reference_number %></td>
+    <td><%=h rating_session.channel %></td>
+    <td><%= link_to 'Show', rating_session %></td>
+    <td><%= link_to 'Edit', edit_rating_session_path(rating_session) %></td>
+    <td><%= link_to 'Destroy', rating_session, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New rating_session', new_rating_session_path %>

@@ -5,7 +5,7 @@ class CreateSituationalDatas < ActiveRecord::Migration
       t.text :accompanying_people
       t.text :significant_occurences
 
-      t.column :user_rating_id, :integer
+      t.column :rating_session_id, :integer
     end
   end
 

@@ -1,0 +1,20 @@
+<h1>Editing rating_session</h1>
+
+<% form_for(@rating_session) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :reference_number %><br />
+    <%= f.text_field :reference_number %>
+  </p>
+  <p>
+    <%= f.label :channel %><br />
+    <%= f.text_field :channel %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @rating_session %> |
+<%= link_to 'Back', rating_sessions_path %>

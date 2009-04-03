@@ -3,10 +3,7 @@ class CreateUserRatings < ActiveRecord::Migration
     create_table :user_ratings do |t|
       t.integer :rating
 
-      t.integer :reference_number
-      t.string :channel
-
-      t.column :user_id, :integer
+      t.column :rating_session_id, :integer
       t.column :dimension_id, :integer
 
       t.timestamps

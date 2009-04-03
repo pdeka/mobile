@@ -1,7 +1,7 @@
 class SummaryController < ApplicationController
   
   def index
-    @user_rating = session[:user_rating]
+    @rating_session = session[:rating_session]
   end
 
 end

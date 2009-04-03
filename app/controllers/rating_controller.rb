@@ -7,12 +7,9 @@ class RatingController < ApplicationController
   def create
     rating = UserRating.new
     rating.rating = params[:selected_rating]
-    rating.user = session[:user]
+    rating.rating_session = session[:rating_session]
     rating.dimension = session[:dimension]
 
-    rating.channel = 'mobile'
-    rating.reference_number = 1000000 + rand(8999999)
-      
     rating.save!
 
     session[:user_rating] = rating
