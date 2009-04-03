@@ -2,14 +2,15 @@
 
 <% form_tag '/situational_data_entry/create' do %>
 
+    <br />
     <p>Where are you?</p>
-    <p><%= text_field_tag  'location', nil, :maxlength => 15, :size => 20 %></p>
+    <p><%= text_field_tag  'location', nil, :maxlength => 15, :size => 20 %></p><br />
 
     <p>Who are you with?</p>
-    <p><%= text_field_tag  'accompanying_people', nil, :maxlength => 15, :size => 20 %></p>
+    <p><%= text_field_tag  'accompanying_people', nil, :maxlength => 15, :size => 20 %></p><br />
 
     <p>Has anything significant happened since your last rating?</p>
-    <p><%= text_area_tag  'significant_occurences', nil%></p>
+    <p><%= text_area_tag  'significant_occurences', nil%></p><br />
     
     <p><%= submit_tag 'Submit', :class => 'un_ltt_button' %></p>
 

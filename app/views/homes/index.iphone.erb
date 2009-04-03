@@ -2,9 +2,10 @@
 
 <% form_tag homes_path do %>
 
+    <br />
     <% @user.dimensions.each do |dimension| %>
         <p><%= dimension.name %></p>
-        <p><% (1..5).each do |number| %> <%= number.to_s %>&nbsp; <%= radio_button_tag "#{dimension.name}_rating", "#{number}", number == 2 %> &nbsp;&nbsp;<%end%></p>
+        <p><% (1..5).each do |number| %> <%= number.to_s %>&nbsp; <%= radio_button_tag "#{dimension.name}_rating", "#{number}", number == 2 %> &nbsp;&nbsp;<%end%></p><br />
     <% end %>
 
     <p><%= submit_tag 'Rate', :class => 'un_ltt_button' %></p>
