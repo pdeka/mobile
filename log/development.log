@@ -18454,3 +18454,15 @@ Processing LoginsController#index (for 127.0.0.1 at 2009-04-03 11:52:01) [GET]
 Rendering template within layouts/application
 Rendering logins/index
 Completed in 17ms (View: 14, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginsController#index (for 127.0.0.1 at 2009-04-03 16:13:14) [GET]
+Rendering template within layouts/application
+Rendering logins/index
+Completed in 27ms (View: 23, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginsController#index (for 127.0.0.1 at 2009-04-03 16:16:21) [GET]
+Rendering template within layouts/application
+Rendering logins/index
+Completed in 10ms (View: 7, DB: 0) | 200 OK [http://localhost/]
