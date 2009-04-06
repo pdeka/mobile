@@ -4,7 +4,7 @@
 
     <br />
     <p>User Number</p>
-    <p><%= text_field_tag  'usernumber', nil, :maxlength => 15, :size => 20 %></p><br />
+    <p><%= text_field_tag  'usernumber', nil, :maxlength => 15, :size => 20 , :style => '-wap-input-format: "*N"' %></p><br />
     <p>Password</p>
     <p><%= password_field_tag 'password', nil, :maxlength => 15, :size => 20 %></p><br />
     <p><%= submit_tag 'Login', :class => 'un_ltt_button' %></p>

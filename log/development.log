@@ -21436,3 +21436,32 @@ Rendered _update_form (21.5ms)
 Rendered _messages (0.3ms)
 Rendered _list_inline_adapter (3.5ms)
 Completed in 39ms (View: 6, DB: 0) | 200 OK [http://localhost/situational_datas/7/edit?_method=get&eid=be7178e3448a9fa474848c54d962dbc9&nested=true&parent_column=rating_sessions&parent_controller=rating_sessions&parent_model=User&adapter=_list_inline_adapter]
+
+
+Processing LoginsController#index (for 127.0.0.1 at 2009-04-06 12:31:46) [GET]
+Rendering template within layouts/application
+Rendering logins/index
+Completed in 9ms (View: 6, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginsController#index (for 127.0.0.1 at 2009-04-06 12:32:55) [GET]
+Rendering template within layouts/application
+Rendering logins/index
+Completed in 10ms (View: 6, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginsController#index (for 127.0.0.1 at 2009-04-06 12:33:25) [GET]
+Rendering template within layouts/application
+Rendering logins/index
+Completed in 12ms (View: 7, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginsController#create (for 127.0.0.1 at 2009-04-06 12:33:30) [POST]
+  Parameters: {"commit"=>"Login", "authenticity_token"=>"f2a146d0a8b48a1cc822dd1ef0d3a7e6386b1b83", "usernumber"=>"1234", "password"=>"1234"}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE (usernumber = '1234' and password = '1234') LIMIT 1[0m
+  [4;36;1mRatingSession Create (2.2ms)[0m   [0;1mINSERT INTO "rating_sessions" ("reference_number", "created_at", "updated_at", "user_id", "channel") VALUES(1997791, '2009-04-06 02:33:30', '2009-04-06 02:33:30', 1, 'mobile')[0m
+  [4;35;1mDimension Load (0.7ms)[0m   [0mSELECT * FROM "dimensions" INNER JOIN "dimensions_users" ON "dimensions".id = "dimensions_users".dimension_id WHERE ("dimensions_users".user_id = 1 ) [0m
+  [4;36;1mUserRating Load (0.3ms)[0m   [0;1mSELECT * FROM "user_ratings" WHERE ("user_ratings".rating_session_id = 13) [0m
+Rendering template within layouts/application
+Rendering homes/index
+Completed in 46ms (View: 11, DB: 4) | 200 OK [http://localhost/logins]
