@@ -15,7 +15,7 @@ class RatingSession < ActiveRecord::Base
   end
 
   def to_label
-    created_at
+    created_at.strftime('%m/%d/%Y %I:%M%p')
   end
 
 end

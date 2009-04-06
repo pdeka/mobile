@@ -3,6 +3,9 @@
 <% form_tag homes_path do %>
 
     <br />
+    <p>Please rate the following mood dimensions on a scale of 1 to 5 (1 = lowest, 5 = highest)</p>
+
+    <br />
     <% @user.dimensions.each do |dimension| %>
         <p><%= dimension.name %></p>
         <p><% (1..5).each do |number| %> <%= number.to_s %>&nbsp; <%= radio_button_tag "#{dimension.name}_rating", "#{number}", number == 3 %> &nbsp;&nbsp;<%end%></p><br />

@@ -24,7 +24,6 @@ a, a:visited {
 .lmb_title, a.lmb_title {
     color: #fff;
     background: #1e4798;
-    margin: 5px 0px;
     text-decoration: none;
 }
 
@@ -101,8 +100,8 @@ a, a:visited {
 div.lmb_title {
     background: #036;
     margin: 0px;
-    border-top: 3px solid #fff;
-    padding: 2px;
+    /*border-top: 3px solid #fff;*/
+    padding: 0px;
 }
 
 div.lmb1 {
